@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 13:57:18 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:01:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int c, char **v)
 {
 	char	*input;
+	char	*piped;
 	t_token	*token;
 
 	token = NULL;
@@ -33,7 +34,8 @@ int	main(int c, char **v)
 				ft_println("Wrong Syntax");
 			else
 			{
-				token = ft_safe_calloc(words(input, ' '), sizeof(t_token));
+				piped = ft_pipe_spliter(input);
+				token = ft_safe_calloc(words(piped, ' '), sizeof(t_token));
 				ft_init_token(token, input);
 				ft_print_info(token);
 			}
@@ -45,18 +47,64 @@ int	main(int c, char **v)
 	return (0);
 }
 
+static int	strlen_pipe(char *str)
+{
+	int	c;
+	int	size;
+
+	c = 0;
+	size = ft_strlen(str);
+	while (str[c])
+	{
+		if (str[c] == '|')
+			size += 2;
+		c++;
+	}
+	return (c);
+}
+
+char	*ft_pipe_spliter(char *str)
+{
+	size_t		c;
+	int			i;
+	int			size;
+	char		*piped;
+
+	c = 0;
+	i = 0;
+	size = strlen_pipe(str);
+	piped = ft_safe_calloc(size + 1, sizeof(char));
+	while (c < ft_strlen(str))
+	{
+		if (str[c] == '|')
+		{
+			piped[i++] = ' ';
+			piped[i++] = '|';
+			piped[i++] = ' ';
+		}
+		else
+			piped[i++] = str[c];
+		c++;
+	}
+	piped[i] = '\0';
+	return (piped);
+}
+
 void	ft_init_token(t_token *token, char *data)
 {
 	char	**info;
+	char	*piped;
 	int		c;
 	t_token	*cur;
 
 	c = 0;
-	info = ft_split(data, ' ');
+	piped = ft_pipe_spliter(data);
+	info = ft_split(piped, ' ');
+	free(piped);
 	while (info[c])
 	{
 		cur = token + c;
-		cur->data = info[c];
+		cur->data = ft_strdup(info[c]);
 		ft_data_type(cur);
 		if (info[c + 1])
 			cur->next = cur + 1;
@@ -64,6 +112,7 @@ void	ft_init_token(t_token *token, char *data)
 			cur->next = NULL;
 		c++;
 	}
+	free_args(info);
 }
 
 void	ft_data_type(t_token *token)

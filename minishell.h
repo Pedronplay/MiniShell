@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 13:09:29 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:59:24 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ typedef enum e_type
 	UNSET,
 	ENV,
 	EXIT,
-	WORDS
+	WORDS,
+	FLAG,
+	MATH,
+	PIPE
 }	t_type;
 
 typedef struct s_token
@@ -50,6 +53,7 @@ void	ft_print_info(t_token *token);
 void	ft_init_token(t_token *token, char *data);
 void	ft_data_type(t_token *token);
 int		ft_syntax_checker(char *input);
+char	*ft_pipe_spliter(char *str);
 
 int		ft_strcmp(const char *s1, const char *s2);
 #endif
