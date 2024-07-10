@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 16:01:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:12:17 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int c, char **v)
 {
 	char	*input;
-	char	*piped;
+	//char	*piped;
 	t_token	*token;
 
 	token = NULL;
@@ -30,15 +30,15 @@ int	main(int c, char **v)
 			break ;
 		if (*input)
 		{
-			if (ft_syntax_checker(input) == FAILURE)
+			if (ft_validation_input(input) == FAILURE)
 				ft_println("Wrong Syntax");
-			else
+			/*else
 			{
 				piped = ft_pipe_spliter(input);
 				token = ft_safe_calloc(words(piped, ' '), sizeof(t_token));
 				ft_init_token(token, input);
 				ft_print_info(token);
-			}
+			}*/
 			add_history(input);
 			free(input);
 		}
@@ -113,54 +113,4 @@ void	ft_init_token(t_token *token, char *data)
 		c++;
 	}
 	free_args(info);
-}
-
-void	ft_data_type(t_token *token)
-{
-	if (ft_strcmp(token->data, "cd") == SUCCESS)
-		token->type = CD;
-	else
-		token->type = WORDS;
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	c;
-
-	c = 0;
-
-	while (s1[c])
-	{
-		if (s1[c] != s2[c])
-			return (FAILURE);
-		c++;
-	}
-	return (SUCCESS);
-}
-
-int	ft_syntax_checker(char *input)
-{
-	int		c;
-
-	c = 0;
-	while (input[c] == ' ')
-		c++;
-	if (input[c] == '|')
-		return (FAILURE);
-	else
-	{
-		while (input[c])
-		{
-			if (input[c] == '|')
-			{
-				if (input[c + 1] == '|' || input[c + 1] == '\0'
-					|| input[c] == '\0')
-					return (FAILURE);
-				c++;
-				return (ft_syntax_checker(input + c));
-			}
-			c++;
-		}
-	}
-	return (SUCCESS);
 }
