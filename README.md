@@ -2,11 +2,11 @@
 
 ### 📅 **10/07**
 
-* Done parcer with pipes and quotes;
-* Done some of the atribution of data in nodes called tokens;
-* Tested if the data is right in said nodes;
-* Dindt freed all the mem allocated;
-* Got the code generaly organized;
+* Done parser with pipes and quotes;
+* Done some attribution of data in nodes called tokens;
+* Tested if the data is correct in said nodes;
+* Didn't free all the memory allocated;
+* Got the code generally organized;
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
