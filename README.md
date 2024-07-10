@@ -17,4 +17,32 @@
 
 ### 📅 **11/07**
 
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+#
+
+### 📅 **12/07**
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+#
+
+### 📅 **15/07**
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+#
+
+### 📅 **16/07**
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+#
+
+### 📅 **17/07**
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+#
+
 
