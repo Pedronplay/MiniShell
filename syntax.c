@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 18:20:45 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:31:31 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static int	ft_syntax_pipes(char *input)
 		while (input[c])
 		{
 			if (input[c] == '"')
-				ft_skip_quotes(input, &c);
+				if (ft_skip_quotes(input, &c) != SUCCESS)
+					return (FAILURE);
 			if (input[c] == '|')
 			{
 				if (input[c + 1] == '|' || input[c + 1] == '\0')
@@ -66,33 +67,12 @@ static int	ft_syntax_pipes(char *input)
 	return (SUCCESS);
 }
 
-static int	ft_syntax_quotes(char *input)
-{
-	int	c;
-	int	nbr;
 
-	c = 0;
-	nbr = 0;
-	while (input[c] == ' ')
-		c++;
-	if (input[c] == '"')
-		return (FAILURE);
-	while (input[c])
-	{
-		if (input[c] == '"')
-			nbr += 1;
-		c++;
-	}
-	if (nbr % 2 != 0)
-		return (FAILURE);
-	return (SUCCESS);
-}
 
 int	ft_validation_input(char *input)
 {
 	if (ft_syntax_pipes(input) != SUCCESS)
 		return (FAILURE);
-	if (ft_syntax_quotes(input) != SUCCESS)
-		return (FAILURE);
+	//TODO get redirects
 	return (SUCCESS);
 }
