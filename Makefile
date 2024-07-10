@@ -7,12 +7,12 @@ CFLAGS = -Wall -Wextra -Werror
 #CFLAGS += -fsanitize=thread
 #CFLAGS += -fsanitize=address
 
-NAME = philo
+NAME = minishell
 
-SRCS = main.c parser.c utils.c safe_hadlers.c init.c setters_getters.c sincro.c meal.c logging.c monitor.c
+SRCS = main.c tester.c
 
-#LIBFT = ./libraries/libft/libft.a
-#PRINTF = ./libraries/printf/ft_printf.a
+LIBFT = ./libraries/libft/libft.a
+PRINTF = ./libraries/printf/ft_printf.a
 
 
 GREEN		= \033[38;5;47m
@@ -24,10 +24,10 @@ RESET 		= \033[0m
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME) 
+all: $(LIBFT) $(PRINTF) $(NAME)
 
-$(NAME):  $(OBJS) 
-	$(CC) $(CFLAGS) $(OBJS) -lpthread -o $(NAME)
+$(NAME): $(OBJS) 
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME) -lreadline
 	@echo "$(GREEN)Executable $(NAME) created"
 	@echo " /###### /##          /##       /##                               /##"
 	@echo "|_  ##_/| ##          | ##      |__/                              | ##"
@@ -58,9 +58,9 @@ $(NAME):  $(OBJS)
 
 clean:
 	rm -rf $(OBJS) 
-	@echo "$(YELLOW)Removing $(NAME) objects files$(RESET)" 
-	#cd libraries && cd libft && make clean
-	#cd libraries && cd printf && make clean
+	@echo "$(YELLOW)Removing $(NAME) and libraries objects files$(RESET)" 
+	cd libraries && cd libft && make clean
+	cd libraries && cd printf && make clean
 
 fclean: clean
 	rm -rf $(NAME) 
@@ -88,8 +88,8 @@ fclean: clean
 	@echo "⠀⠀⠀⠀⣿⣿⣿⣿⠛⢻⣿⣿⣥⣤⡈⠻⠛⣻⣿⣿⡟⠛⣿⣿⣿⣿⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⣿⣿⣿⣿⠀⢸⣿⣿⣿⣿⣏⣠⡀⢿⣿⣿⡇⠀⣿⣿⣿⣿⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠉⠉⠉⠉⠀⠈⠉⠉⠉⠉⠉⠉⠉⠀⠉⠉⠁⠀⠉⠉⠉⠉⠀⠀⠀⠀$(RESET)"
-	#cd libraries && cd libft && make fclean
-	#cd libraries && cd printf && make fclean
+	cd libraries && cd libft && make fclean
+	cd libraries && cd printf && make fclean
 
 
 re: fclean all 
@@ -97,11 +97,11 @@ re: fclean all
 .phony: all bonus clean fclean re 
 
 ################################# Making librarys #########################
-#$(LIBFT):
-#	cd libraries && cd libft && make 
+$(LIBFT):
+	cd libraries && cd libft && make 
 	
-#$(PRINTF):
-#	cd libraries && cd printf && make 
+$(PRINTF):
+	cd libraries && cd printf && make 
 
 	
 	
