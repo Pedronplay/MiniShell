@@ -20,14 +20,15 @@
 * Fix bugg on quotes;
 * Done parser on single quotes;
 * Polish Skip quotes and single quotes functions;
-* Done parser with redirect - < << >> >;
+* Almost done parser with redirect - < << >> >;
 * Started working on env (Pedro)
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
-* ajust .h need to clean up and review logic;
-* do a new pliter to place spaces in relevant chars;
-* make a new split func adapted to this project;
+* Fix bug on redirect;
+* Ajust .h need to clean up and review logic;
+* Do a new pliter to place spaces in relevant chars;
+* Make a new split func adapted to this project;
 
 #
 

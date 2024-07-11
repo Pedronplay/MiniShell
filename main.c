@@ -6,13 +6,13 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 10:44:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:48:36 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int c, char **v)
+int	main(int c, char **v, char **envp)
 {
 	char	*input;
 	//char	*piped;
@@ -22,6 +22,7 @@ int	main(int c, char **v)
 
 	(void)c;
 	(void)v;
+	(void)envp;
 
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 18:10:09 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:11:08 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	ft_syntax_redirects(char *input)
 				if (ft_redirect_type(input + c) != SUCCESS)
 					return (FAILURE);
 				c++;
-				if (input[c] == '|')
+				if (input[c] == '|') // TODO create func to check if i only got spaces in betwin > >
 					return (FAILURE);
 				return (ft_syntax_redirects(input + c));
 			}
