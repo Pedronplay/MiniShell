@@ -24,7 +24,7 @@
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
-* ajust .h need to clean up and revwiew logic;
+* ajust .h need to clean up and review logic;
 * do a new pliter to place spaces in relevant chars;
 * make a new split func adapted to this project;
 
