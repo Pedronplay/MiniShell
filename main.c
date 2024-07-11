@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 17:12:17 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:44:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int c, char **v)
 			/*else
 			{
 				piped = ft_pipe_spliter(input);
-				token = ft_safe_calloc(words(piped, ' '), sizeof(t_token));
+				token = ft_safe_calloc(words(piped, ' '), sizeof(t_token)); TODO fix this
 				ft_init_token(token, input);
 				ft_print_info(token);
 			}*/
