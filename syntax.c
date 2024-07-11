@@ -6,12 +6,11 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 16:26:52 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:10:09 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdbool.h>
 
 static int	ft_syntax_1place(char *input, int *c, bool redirect)
 {
@@ -43,7 +42,7 @@ static int	ft_skip_quotes(char *input, int *c, char i)
 	return (FAILURE);
 }
 
-static int	ft_syntax_pipes(char *input)
+int	ft_syntax_pipes(char *input)
 {
 	int		c;
 
@@ -79,22 +78,24 @@ static int	ft_redirect_type(char *input)
 	left = false;
 	right = false;
 	c = 0;
+	if (ft_check_triples(input) != SUCCESS)
+		return (FAILURE);
 	while (c < 2)
 	{
 		if (input[c] == '<')
 			left = true;
 		if (input[c] == '>')
 			right = true;
+		if (input[c] != '>' && input[c] != '<')
+			break ;
 		c++;
 	}
-	if (input[c] == '<' || input[c] == '>')
-		return (FAILURE);
 	if (left && right)
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-static int	ft_syntax_redirects(char *input)
+int	ft_syntax_redirects(char *input)
 {
 	int		c;
 

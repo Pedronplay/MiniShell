@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 17:04:11 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:08:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,8 @@ char	*ft_pipe_spliter(char *str);
 int		ft_validation_input(char *input);
 
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_check_triples(char *input);
+
+int		ft_syntax_redirects(char *input);
+int		ft_syntax_pipes(char *input);
 #endif

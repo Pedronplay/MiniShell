@@ -17,7 +17,16 @@
 
 ### 📅 **11/07**
 
+* Fix bugg on quotes;
+* Done parser on single quotes;
+* Polish Skip quotes and single quotes functions;
+* Done parser with redirect - < << >> >;
+
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* ajust .h need to clean up and revwiew logic;
+* do a new pliter to place spaces in relevant chars;
+* make a new split func adapted to this project;
 
 #
 
