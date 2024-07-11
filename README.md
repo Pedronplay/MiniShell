@@ -21,6 +21,7 @@
 * Done parser on single quotes;
 * Polish Skip quotes and single quotes functions;
 * Done parser with redirect - < << >> >;
+* Started working on env (Pedro)
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
