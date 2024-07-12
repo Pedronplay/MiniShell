@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 18:07:45 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:11:31 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,20 @@ int	ft_check_triples(char *input)
 		c++;
 	}
 	if (i == 2)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+int	ft_space_redirect(char *input)
+{
+	int		c;
+
+	c = 0;
+	if (input[c] == '>' || input[c] == '<')
+		c++;
+	while (input[c] == ' ')
+		c++;
+	if (input[c] == '>' || input[c] == '<')
 		return (FAILURE);
 	return (SUCCESS);
 }

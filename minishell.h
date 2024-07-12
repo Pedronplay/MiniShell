@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 18:08:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:55:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ void	ft_print_info(t_token *token);
 void	ft_init_token(t_token *token, char *data);
 void	ft_data_type(t_token *token);
 
-char	*ft_pipe_spliter(char *str);
+char	*ft_input_spliter(char *str);
 int		ft_validation_input(char *input);
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_triples(char *input);
+int		ft_space_redirect(char *input);
+int		ft_clean_size(char *str);
 
 int		ft_syntax_redirects(char *input);
 int		ft_syntax_pipes(char *input);

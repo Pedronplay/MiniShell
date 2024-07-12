@@ -6,25 +6,18 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/11 19:11:08 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/12 10:27:14 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_syntax_1place(char *input, int *c, bool redirect)
+static int	ft_syntax_1place(char *input, int *c)
 {
 	while (input[*c] == ' ')
 		(*c)++;
 	if (input[*c] == '|')
 		return (FAILURE);
-	if (!redirect)
-	{
-		if (input[*c] == '"')
-			return (FAILURE);
-		if (input[*c] == '\'')
-			return (FAILURE);
-	}
 	if (input[*c] == '\0')
 		return (FAILURE);
 	return (SUCCESS);
@@ -47,7 +40,7 @@ int	ft_syntax_pipes(char *input)
 	int		c;
 
 	c = 0;
-	if (ft_syntax_1place(input, &c, false) != SUCCESS)
+	if (ft_syntax_1place(input, &c) != SUCCESS)
 		return (FAILURE);
 	else
 	{
@@ -100,7 +93,7 @@ int	ft_syntax_redirects(char *input)
 	int		c;
 
 	c = 0;
-	if (ft_syntax_1place(input, &c, true) != SUCCESS)
+	if (ft_syntax_1place(input, &c) != SUCCESS)
 		return (FAILURE);
 	else
 	{
@@ -114,7 +107,7 @@ int	ft_syntax_redirects(char *input)
 				if (ft_redirect_type(input + c) != SUCCESS)
 					return (FAILURE);
 				c++;
-				if (input[c] == '|') // TODO create func to check if i only got spaces in betwin > >
+				if (input[c] == '|' || ft_space_redirect(input + c))
 					return (FAILURE);
 				return (ft_syntax_redirects(input + c));
 			}
