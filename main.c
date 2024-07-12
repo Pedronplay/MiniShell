@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/12 15:21:27 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:34:10 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int c, char **v, char **envp)
 
 			else
 			{
-				ft_println("%s", input);
-				ft_println("%d",ft_clean_size(input));
+				//ft_println("%s", input);
+				//ft_println("%d",ft_clean_size(input));
 				ft_println("%s",ft_input_spliter(input));
 				//token = ft_safe_calloc(words(piped, ' '), sizeof(t_token)); TODO fix this
 				//ft_init_token(token, input);
@@ -91,7 +91,7 @@ static void	ft_see_space(char *str, int *c, int *size)
 	}
 }
 
-static void	ft_set_space(char *str, char *dst, int *c, int *i)
+static void	ft_set_space(char *str, char **dst, int *c, int *i)
 {
 	if (str[*c] == '>' || str[*c] == '<')
 	{
@@ -101,14 +101,14 @@ static void	ft_set_space(char *str, char *dst, int *c, int *i)
 	{
 		if (str[*c - 1] == ' ' && str[*c + 1] == ' ')
 		{
-			dst[(*i)++] = str[*c];
+			(*dst)[(*i)++] = str[*c];
 			return ;
 		}
 		if (str[*c - 1] != ' ')
-			dst[(*i)++] = ' ';
-		dst[(*i)++] = str[*c];
+			(*dst)[(*i)++] = ' ';
+		(*dst)[(*i)++] = str[*c];
 		if (str[*c + 1] != ' ')
-			dst[(*i)++] = ' ';
+			(*dst)[(*i)++] = ' ';
 		return ;
 	}
 }
@@ -163,7 +163,7 @@ char	*ft_input_spliter(char *str)
 			{
 				if ((str[c] == '|' || str[c] == '<' || str[c] == '>'))
 				{
-					ft_set_space(str, clean_input, &c, &i);
+					ft_set_space(str, &clean_input, &c, &i);
 				}
 				else
 				{
