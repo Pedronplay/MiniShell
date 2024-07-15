@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/12 14:11:31 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:53:29 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,24 @@ int	ft_space_redirect(char *input)
 	if (input[c] == '>' || input[c] == '<')
 		return (FAILURE);
 	return (SUCCESS);
+}
+
+void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i)
+{
+	char	w;
+
+	w = input[*c];
+	(*dst)[(*i)++] = input[*c];
+	(*c)++;
+	while (input[*c] || input[*c] != '\0')
+	{
+		if (input[*c] == w)
+		{
+			(*dst)[*i] = input[*c];
+			return ;
+		}
+		(*dst)[(*i)++] = input[*c];
+		(*c)++;
+	}
+
 }

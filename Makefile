@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = minishell
 
-SRCS = main.c tester.c syntax.c utils.c
+SRCS = main.c tester.c syntax.c utils.c utils2.c 
 
 LIBFT = ./libraries/libft/libft.a
 PRINTF = ./libraries/printf/ft_printf.a

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/12 10:27:14 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:20:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_syntax_1place(char *input, int *c)
 	return (SUCCESS);
 }
 
-static int	ft_skip_quotes(char *input, int *c, char i)
+int	ft_skip_quotes(char *input, int *c, char i)
 {
 	(*c)++;
 	while (input[*c] || input[*c] != '\0')

@@ -34,13 +34,27 @@
 
 ### 📅 **12/07**
 
+* Fix bugg on quotes;
+* Done done parser with redirect - < << >> >;
+* Fix bug on redirect;
+
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
+* Ajust .h need to clean up and review logic;
+* Make a new split func adapted to this project;
+* Do a new pliter to place spaces in relevant chars;
 #
 
 ### 📅 **15/07**
 
+* Done new pliter to place spaces in relevant chars;
+* Bug fixing with new plitter;
+* Found bug in "ola"'ola'"ola" -> it doesnt put spaces in bettwin ""
+
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Ajust .h need to clean up and review logic;
+* Make a new split func adapted to this project;
 
 #
 
