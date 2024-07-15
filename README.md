@@ -54,6 +54,7 @@
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
+* Clean more code
 * Ajust .h need to clean up and review logic;
 * Make a new split func adapted to this project;
 
