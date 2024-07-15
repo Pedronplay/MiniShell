@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/15 16:52:53 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:04:02 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ int		ft_clean_size(char *str);
 int		ft_skip_quotes(char *input, int *c, char i);
 void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i);
 void	ft_space_skiper(char *str, int *c);
+
+//------------Meh funcs----------------
+void	ft_reset_int(int *c, int *i);
+void	ft_space_helper(char *str, char **dst, int *c, int *i);
+void	ft_count_helper(char *str, int *c, int *size);
 
 int		ft_syntax_redirects(char *input);
 int		ft_syntax_pipes(char *input);

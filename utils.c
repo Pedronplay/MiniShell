@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/15 16:53:29 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:04:39 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,18 @@ void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i)
 		(*c)++;
 	}
 
+}
+
+void	ft_space_helper(char *str, char **dst, int *c, int *i)
+{
+	if (str[*c - 1] == ' ' && str[*c + 1] == ' ')
+	{
+		(*dst)[*i] = str[*c];
+		return ;
+	}
+	if (str[*c - 1] != ' ')
+		(*dst)[(*i)++] = ' ';
+	(*dst)[*i] = str[*c];
+	if (str[*c + 1] != ' ')
+		(*dst)[++(*i)] = ' ';
 }

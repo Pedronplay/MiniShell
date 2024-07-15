@@ -50,6 +50,7 @@
 * Done new pliter to place spaces in relevant chars;
 * Bug fixing with new plitter;
 * Found bug in "ola"'ola'"ola" -> it doesnt put spaces in bettwin ""
+* Cleaned some code
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
