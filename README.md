@@ -62,7 +62,16 @@
 
 ### 📅 **16/07**
 
+* Done a new split func adapted to this project;
+* Checked leaks, fixed all leaks;
+* Ajusted some of the .h;
+* Done init Tokens with all data;
+* 
+
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Check if component is flag;
+* Polish main;
 
 #
 

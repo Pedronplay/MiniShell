@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/15 17:04:02 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:31:03 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef enum e_exit
 	FAILURE,
 }	t_exit;
 
-typedef enum e_type
-{
+/*
+	comands:
 	ECHO,
 	CD,
 	PWD,
@@ -34,17 +34,28 @@ typedef enum e_type
 	UNSET,
 	ENV,
 	EXIT,
-	WORDS,
+*/
+
+typedef enum e_type
+{
+	CMD,
+	BUILT_IN,
+	EXIT,
+	STR,
 	FLAG,
-	MATH,
-	PIPE
+	PIPE,
+	R_IN,
+	R_IN2,
+	R_OUT,
+	R_OUT2,
 }	t_type;
 
 typedef struct s_token
 {
-	char			*data;
-	t_type			type;
-	struct s_token	*next;
+	char				*data;
+	t_type				type;
+	bool				expand;
+	struct s_token		*next;
 }	t_token;
 
 void	hello_print(t_type name);
@@ -71,4 +82,12 @@ void	ft_count_helper(char *str, int *c, int *size);
 
 int		ft_syntax_redirects(char *input);
 int		ft_syntax_pipes(char *input);
+
+//------------ft_quotes_split.c-------
+char	**ft_quotes_split(char *s, char c);
+int		words_quotes(char *s, char c);
+
+//------------free_funcs.c -------
+void	free_tokens(t_token *stack);
+
 #endif

@@ -6,36 +6,52 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/15 17:04:39 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:56:42 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	ft_check_cmd(t_token *token)
+{
+	if (!token->data)
+		return (FAILURE);
+	if (ft_strcmp(token->data, "echo") == SUCCESS)
+		return (SUCCESS);
+	else if (ft_strcmp(token->data, "cd") == SUCCESS)
+		return (SUCCESS);
+	else if (ft_strcmp(token->data, "pwd") == SUCCESS)
+		return (SUCCESS);
+	else if (ft_strcmp(token->data, "export") == SUCCESS)
+		return (SUCCESS);
+	else if (ft_strcmp(token->data, "unset") == SUCCESS)
+		return (SUCCESS);
+	else if (ft_strcmp(token->data, "env") == SUCCESS)
+		return (SUCCESS);
+	return (FAILURE);
+}
+
+
 void	ft_data_type(t_token *token)
 {
-	if (ft_strcmp(token->data, "echo") == SUCCESS)
-		token->type = ECHO;
-	else if (ft_strcmp(token->data, "cd") == SUCCESS)
-		token->type = CD;
-	else if (ft_strcmp(token->data, "pwd") == SUCCESS)
-		token->type = PWD;
-	else if (ft_strcmp(token->data, "export") == SUCCESS)
-		token->type = EXPORT;
-	else if (ft_strcmp(token->data, "unset") == SUCCESS)
-		token->type = UNSET;
-	else if (ft_strcmp(token->data, "env") == SUCCESS)
-		token->type = ENV;
+	if (ft_strcmp(token->data, "<") == SUCCESS)
+		token->type = R_IN;
+	else if (ft_strcmp(token->data, "<<") == SUCCESS)
+		token->type = R_IN2;
+	else if (ft_strcmp(token->data, ">") == SUCCESS)
+		token->type = R_OUT;
+	else if (ft_strcmp(token->data, ">>") == SUCCESS)
+		token->type = R_OUT2;
 	else if (ft_strcmp(token->data, "exit") == SUCCESS)
 		token->type = EXIT;
 	else if (ft_strcmp(token->data, "flag") == SUCCESS)
 		token->type = FLAG;
-	else if (ft_strcmp(token->data, "-") == SUCCESS)
-		token->type = MATH;
 	else if (ft_strcmp(token->data, "|") == SUCCESS)
 		token->type = PIPE;
+	else if (ft_check_cmd(token) == SUCCESS)
+		token->type = CMD;
 	else
-		token->type = WORDS;
+		token->type = STR;
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -82,38 +98,4 @@ int	ft_space_redirect(char *input)
 	if (input[c] == '>' || input[c] == '<')
 		return (FAILURE);
 	return (SUCCESS);
-}
-
-void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i)
-{
-	char	w;
-
-	w = input[*c];
-	(*dst)[(*i)++] = input[*c];
-	(*c)++;
-	while (input[*c] || input[*c] != '\0')
-	{
-		if (input[*c] == w)
-		{
-			(*dst)[*i] = input[*c];
-			return ;
-		}
-		(*dst)[(*i)++] = input[*c];
-		(*c)++;
-	}
-
-}
-
-void	ft_space_helper(char *str, char **dst, int *c, int *i)
-{
-	if (str[*c - 1] == ' ' && str[*c + 1] == ' ')
-	{
-		(*dst)[*i] = str[*c];
-		return ;
-	}
-	if (str[*c - 1] != ' ')
-		(*dst)[(*i)++] = ' ';
-	(*dst)[*i] = str[*c];
-	if (str[*c + 1] != ' ')
-		(*dst)[++(*i)] = ' ';
 }

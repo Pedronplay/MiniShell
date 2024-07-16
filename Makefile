@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = minishell
 
-SRCS = main.c tester.c syntax.c utils.c utils2.c token_utils.c 
+SRCS = main.c tester.c syntax.c utils.c utils2.c token_utils.c ft_quotes_split.c free_funcs.c 
 
 LIBFT = ./libraries/libft/libft.a
 PRINTF = ./libraries/printf/ft_printf.a
@@ -55,6 +55,9 @@ $(NAME): $(OBJS)
 
 #bonus: $(BONUS_OBJS) $(OBJS)
 #	ar rc $(NAME) $(BONUS_OBJS) $(OBJS)  mete no clean -> $(BONUS_OBJS)
+
+valgrind: $(NAME)
+	valgrind --suppressions=readline.supp --leak-check=full ./minishell
 
 clean:
 	rm -rf $(OBJS) 

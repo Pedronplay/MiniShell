@@ -6,46 +6,34 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:45:00 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/10 16:44:13 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:20:03 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	hello_print(t_type name)
-{
-	if (name == CD)
-		ft_println("hello its CD");
-	else
-		ft_println("da fck is this");
-}
-
 static char	*type_to_string(t_type type)
 {
-	if (type == ECHO)
-		return ("ECHO");
-	else if (type == CD)
-		return ("CD");
-	else if (type == PWD)
-		return ("PWD");
-	else if (type == EXPORT)
-		return ("EXPORT");
-	else if (type == UNSET)
-		return ("UNSET");
-	else if (type == ENV)
-		return ("ENV");
+	if (type == CMD)
+		return ("cmd");
 	else if (type == EXIT)
-		return ("EXIT");
-	else if (type == WORDS)
-		return ("WORDS");
+		return ("exit");
 	else if (type == FLAG)
 		return ("FLAG");
-	else if (type == MATH)
-		return ("MATH");
+	else if (type == R_IN)
+		return ("R_IN");
+	else if (type == R_IN2)
+		return ("R_IN2");
+	else if (type == EXIT)
+		return ("EXIT");
+	else if (type == R_OUT)
+		return ("R_OUT");
+	else if (type == R_OUT2)
+		return ("R_OUT2");
 	else if (type == PIPE)
 		return ("PIPE");
 	else
-		return ("UNKNOWN");
+		return ("STR");
 }
 
 
@@ -54,6 +42,7 @@ void	ft_print_info(t_token *token)
 	t_token	*print;
 
 	print = token;
+	ft_printf("-----------------------\n");
 	while (print)
 	{
 		ft_println("text is: %s", print->data);
@@ -67,4 +56,5 @@ void	ft_print_info(t_token *token)
 			ft_println("the next node is: no next node");
 		print = print->next;
 	}
+	ft_printf("-----------------------\n");
 }
