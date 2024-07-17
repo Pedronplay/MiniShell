@@ -6,12 +6,11 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:00:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/16 13:45:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:15:39 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static void	ft_see_space(char *str, int *c, int *size)
 {

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:45:00 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/16 15:20:03 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:03:26 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*type_to_string(t_type type)
 {
 	if (type == CMD)
-		return ("cmd");
+		return ("CMD");
 	else if (type == EXIT)
 		return ("exit");
 	else if (type == FLAG)

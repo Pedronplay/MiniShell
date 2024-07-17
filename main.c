@@ -6,11 +6,12 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/16 16:55:29 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:18:22 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdbool.h>
 
 // int c, char **v, char **envp (void)c; (void)v; (void)envp;
 int	main(void)
@@ -64,13 +65,14 @@ void	ft_init_token(t_token *token, char *data) // data
 	{
 		cur = token + c;
 		cur->data = ft_strdup(info[c]);
-		ft_data_type(cur);
+		ft_data_type(cur, false);
 		if (info[c + 1])
 			cur->next = cur + 1;
 		else
 			cur->next = NULL;
 		c++;
 	}
+	ft_data_type(cur, true);
 	free_args(info);
 }
 

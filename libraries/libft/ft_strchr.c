@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogosan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:49:48 by diogosan          #+#    #+#             */
-/*   Updated: 2023/09/05 10:49:51 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:00:29 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ char	*ft_strchr(const char *str, int c)
 	if ((char)c == 0)
 		return ((char *)str);
 	return (NULL);
+}
+
+int	ft_strchr_bool(const char *str, int c)
+{
+	while (*str)
+	{
+		if (*str == (unsigned char)c)
+			return (0);
+		str++;
+	}
+	return (1);
 }
 /*
 int	main()

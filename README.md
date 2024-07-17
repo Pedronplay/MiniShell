@@ -66,7 +66,6 @@
 * Checked leaks, fixed all leaks;
 * Ajusted some of the .h;
 * Done init Tokens with all data;
-* 
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
@@ -77,7 +76,10 @@
 
 ### 📅 **17/07**
 
+* Done typeing if component is flag (i only accept 1 flag as i think is enauth as the subject tells it);
+
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
 
 #
 
