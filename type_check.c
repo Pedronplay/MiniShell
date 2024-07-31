@@ -6,13 +6,11 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:15:33 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/17 15:19:08 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:18:20 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/libft/libft.h"
 #include "minishell.h"
-#include <stdbool.h>
 
 static int	ft_check_cmd(t_token *token)
 {
@@ -72,7 +70,7 @@ void	ft_data_type(t_token *token, bool reset)
 		flag_check = 1;
 	}
 	else if (ft_check_cmd(token) == SUCCESS)
-		token->type = CMD;
+		token->type = BUILT_IN;
 	else
 		token->type = STR;
 }

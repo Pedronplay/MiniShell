@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/15 14:20:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:46:34 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_syntax_1place(char *input, int *c)
 {
-	while (input[*c] == ' ')
+	while (input[*c] == ' ' || input[*c] == '\t')
 		(*c)++;
 	if (input[*c] == '|')
 		return (FAILURE);
@@ -114,14 +114,5 @@ int	ft_syntax_redirects(char *input)
 			c++;
 		}
 	}
-	return (SUCCESS);
-}
-
-int	ft_validation_input(char *input)
-{
-	if (ft_syntax_pipes(input) != SUCCESS)
-		return (FAILURE);
-	if (ft_syntax_redirects(input) != SUCCESS)
-		return (FAILURE);
 	return (SUCCESS);
 }

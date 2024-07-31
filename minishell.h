@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/17 15:16:50 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:11:38 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef enum e_exit
 	EXIT,
 */
 
+typedef struct s_env
+{
+	char			*title;
+	char			*content;
+	struct s_env	*next;
+}	t_env;
+
 typedef enum e_type
 {
 	CMD,
@@ -54,7 +61,6 @@ typedef struct s_token
 {
 	char				*data;
 	t_type				type;
-	bool				expand;
 	struct s_token		*next;
 }	t_token;
 
@@ -65,7 +71,9 @@ void	ft_init_token(t_token *token, char *data);
 void	ft_data_type(t_token *token, bool reset);
 
 char	*ft_input_spliter(char *str);
-int		ft_validation_input(char *input);
+void	ft_find_expand(t_token **token);
+void	ft_view_data(char *data);
+
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_triples(char *input);
@@ -89,5 +97,8 @@ int		words_quotes(char *s, char c);
 
 //------------free_funcs.c -------
 void	free_tokens(t_token *stack);
+
+//------------syntax2.c -------
+int		ft_validation_input(char *input);
 
 #endif

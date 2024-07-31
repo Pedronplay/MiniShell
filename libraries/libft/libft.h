@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:16:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/17 12:00:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:28:01 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	*ft_safe_malloc(int size);
 void	*ft_safe_calloc(size_t space, size_t type);
 void	free_args(char **numbers);
 int		ft_strchr_bool(const char *str, int c);
+size_t	ft_arraylen(char **str);
 //t_list	*ft_lstlast(t_list *list);
 //t_list	*ft_lstnew(void *content);
 //int		ft_lstsize(t_list *lst);

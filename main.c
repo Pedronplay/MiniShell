@@ -6,20 +6,58 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/17 15:18:22 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:15:33 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libraries/libft/libft.h"
 #include "minishell.h"
-#include <stdbool.h>
+#include <time.h>
 
-// int c, char **v, char **envp (void)c; (void)v; (void)envp;
-int	main(void)
+void	ft_create_env(char **envp, t_env *env)
+{
+	int		c;
+	int		i;
+	t_env	*cur;
+
+	i = ft_arraylen(envp);
+	env = ft_calloc(sizeof(t_env), i - 2);
+	cur = env;
+	ft_println("%d", i);
+	c = 0;
+
+	while (c < i - 2)
+	{
+		cur = env + c;
+		cur->title = ft_strdup(envp[c]);
+		if (envp[c + 1])
+			cur->next = cur + 1;
+		else
+			cur->next = NULL;
+		c++;
+	}
+	while (env->next != NULL)
+	{
+		ft_println("%s", env->title);
+		env = env->next;
+	}
+}
+
+
+
+//   (void)envp;
+int	main(int c, char **v, char **envp)
 {
 	char	*input;
 	char	*clean_input;
 	t_token	*token;
+	t_env	*env;
 
+	(void)c;
+	(void)v;
+	env = NULL;
+	ft_create_env(envp, env);
+	exit(SUCCESS);
 	token = NULL;
 	while (1)
 	{
@@ -41,6 +79,7 @@ int	main(void)
 						words_quotes(clean_input, ' '));
 				free(clean_input);
 				ft_init_token(token, input);
+
 				ft_print_info(token);
 				free_tokens(token);
 			}
@@ -74,5 +113,26 @@ void	ft_init_token(t_token *token, char *data) // data
 	}
 	ft_data_type(cur, true);
 	free_args(info);
+}
+
+void	ft_find_expand(t_token **token)
+{
+	t_token	*cur;
+
+	cur = *token;
+	while (cur)
+	{
+		ft_view_data(cur->data);
+		cur = cur->next;
+	}
+}
+
+void	ft_view_data(char *data)
+{
+	int	c = 1;
+
+	if (ft_strcmp(data, "~") == true)
+		c = 0;
+
 }
 

@@ -76,11 +76,19 @@
 
 ### 📅 **17/07**
 
-* Done typeing if component is flag (i only accept 1 flag as i think is enauth as the subject tells it);
+* Done typeing if component is flag (i only accept 1 flag as i think is enough as the subject tells it);
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
 
 #
 
+### 📅 **31/07**
 
+* Started altering data to expanded form
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Finish the expand part
+
+#

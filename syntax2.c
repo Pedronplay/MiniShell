@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   syntax2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 10:49:48 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 16:27:20 by diogosan         ###   ########.fr       */
+/*   Created: 2024/07/31 10:21:23 by diogosan          #+#    #+#             */
+/*   Updated: 2024/07/31 10:21:40 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_validation_input(char *input)
 {
-	int	c;
-
-	c = 0;
-	while (str[c])
-	{
-		c++;
-	}
-	return (c);
-}
-
-size_t	ft_arraylen(char **str)
-{
-	int	c;
-
-	c = 0;
-	while (str[c])
-	{
-		c++;
-	}
-	return (c);
+	if (ft_syntax_pipes(input) != SUCCESS)
+		return (FAILURE);
+	if (ft_syntax_redirects(input) != SUCCESS)
+		return (FAILURE);
+	return (SUCCESS);
 }
