@@ -85,10 +85,25 @@
 
 ### 📅 **31/07**
 
-* Started altering data to expanded form
+* Started altering data to expanded form;
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
-* Finish the expand part
+* Finish the expand part;
+
+#
+
+### 📅 **01/08**
+
+* Got the ~ expanded on the basic part;
+* Got the env saved in a struct;
+* Made func to retrive the data from env;
+* Made env uptade and free itself when needed;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Continue to expand ~;
+* Reforce the expand logic;
+* Continue to the $ expansions;
 
 #

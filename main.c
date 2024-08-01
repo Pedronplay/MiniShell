@@ -6,40 +6,48 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 17:15:33 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:58:09 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/libft/libft.h"
 #include "minishell.h"
-#include <time.h>
 
-void	ft_create_env(char **envp, t_env *env)
+int	ft_see_equal(char *str)
+{
+	int	c;
+
+	c = 0;
+	while (str[c] != '=')
+	{
+		c++;
+	}
+	return (c);
+}
+
+void	ft_create_env(char **envp, t_env **env)
 {
 	int		c;
 	int		i;
 	t_env	*cur;
+	int		s;
 
 	i = ft_arraylen(envp);
-	env = ft_calloc(sizeof(t_env), i - 2);
-	cur = env;
+	*env = (t_env *)ft_calloc(sizeof(t_env), i);
+	cur = *env;
+
 	ft_println("%d", i);
 	c = 0;
-
-	while (c < i - 2)
+	while (c < i)
 	{
-		cur = env + c;
-		cur->title = ft_strdup(envp[c]);
+		cur = *env + c;
+		s = ft_see_equal(envp[c]);
+		cur->title = ft_fine_strdup(envp[c], 0, s - 1);
+		cur->content = envp[c] + s + 1;
 		if (envp[c + 1])
 			cur->next = cur + 1;
 		else
 			cur->next = NULL;
 		c++;
-	}
-	while (env->next != NULL)
-	{
-		ft_println("%s", env->title);
-		env = env->next;
 	}
 }
 
@@ -56,15 +64,15 @@ int	main(int c, char **v, char **envp)
 	(void)c;
 	(void)v;
 	env = NULL;
-	ft_create_env(envp, env);
-	exit(SUCCESS);
 	token = NULL;
 	while (1)
 	{
+		ft_create_env(envp, &env);
 		input = readline("MiniHell$> ");
 		if (input == NULL || ft_strcmp(input, "exit") == SUCCESS)
 		{
 			free(input);
+			ft_free_env(env);
 			break ;
 		}
 		if (*input)
@@ -79,11 +87,12 @@ int	main(int c, char **v, char **envp)
 						words_quotes(clean_input, ' '));
 				free(clean_input);
 				ft_init_token(token, input);
-
+				ft_find_expand(&token, env);
 				ft_print_info(token);
 				free_tokens(token);
 			}
 			free(input);
+			ft_free_env(env);
 		}
 	}
 	return (0);
@@ -113,26 +122,5 @@ void	ft_init_token(t_token *token, char *data) // data
 	}
 	ft_data_type(cur, true);
 	free_args(info);
-}
-
-void	ft_find_expand(t_token **token)
-{
-	t_token	*cur;
-
-	cur = *token;
-	while (cur)
-	{
-		ft_view_data(cur->data);
-		cur = cur->next;
-	}
-}
-
-void	ft_view_data(char *data)
-{
-	int	c = 1;
-
-	if (ft_strcmp(data, "~") == true)
-		c = 0;
-
 }
 

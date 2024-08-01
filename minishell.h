@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 16:11:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:57:30 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,13 @@ void	ft_init_token(t_token *token, char *data);
 void	ft_data_type(t_token *token, bool reset);
 
 char	*ft_input_spliter(char *str);
-void	ft_find_expand(t_token **token);
-void	ft_view_data(char *data);
 
+//------------expand.c----------------
+void	ft_find_expand(t_token **token, t_env *env);
+void	ft_view_data(t_token **token, t_env *env);
+t_env	*ft_get_content(t_env *env, char *title);
 
+//------------???????.c----------------
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_triples(char *input);
 int		ft_space_redirect(char *input);
@@ -97,6 +100,7 @@ int		words_quotes(char *s, char c);
 
 //------------free_funcs.c -------
 void	free_tokens(t_token *stack);
+void	ft_free_env(t_env *env);
 
 //------------syntax2.c -------
 int		ft_validation_input(char *input);

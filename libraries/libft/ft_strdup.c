@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogosan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:49:48 by diogosan          #+#    #+#             */
-/*   Updated: 2023/09/05 10:49:51 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:34:46 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,26 @@ char	*ft_strdup(char const *src)
 	dest[c] = '\0';
 	return (dest);
 }
+
 /*
-int	main(int t, char **v)
+	Returns the a duple of the string with end on the end position
+	Example -> (user=myfriend, 0, 3) = user
+*/
+char	*ft_fine_strdup(char const *src, int start, int end)
 {
-	char	*show;
-	int	c;
-	char	*str = v[1];
-	
-	t = 0; 
-	
-	show = ft_strdup(str);
+	int		c;
+	char	*dest;
+
+	dest = (char *)ft_calloc((end - start) + 2, sizeof(char));
+	if (!dest)
+		return (0);
 	c = 0;
-	while (show[c])
+	while (start <= end)
 	{
-		write (1, &show[c],1);
+		dest[c] = src[start];
+		start++;
 		c++;
 	}
+	dest[c] = '\0';
+	return (dest);
 }
-*/
