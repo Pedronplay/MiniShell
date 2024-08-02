@@ -17,6 +17,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 	int	c;
 
 	c = 0;
+	if (ft_strlen(s2) > ft_strlen(s1))
+		return (FAILURE);
 	while (s1[c])
 	{
 		if (s1[c] != s2[c])
@@ -56,4 +58,29 @@ int	ft_space_redirect(char *input)
 	if (input[c] == '>' || input[c] == '<')
 		return (FAILURE);
 	return (SUCCESS);
+}
+
+char	*ft_strcat(char *str1, char *str2)
+{
+	int		size;
+	int		c;
+	char	*str;
+
+	c = 0;
+	size = ft_strlen(str1) + ft_strlen(str2);
+	str = ft_calloc(size + 1, sizeof(char));
+	while(*str1)
+	{
+		str[c] = *str1;
+		c++;
+		str1++;
+	}
+	while(*str2)
+	{
+		str[c] = *str2;
+		c++;
+		str2++;
+	}
+	str[c] = '\0';
+	return (str);
 }

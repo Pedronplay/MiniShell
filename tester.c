@@ -42,7 +42,7 @@ void	ft_print_info(t_token *token)
 	t_token	*print;
 
 	print = token;
-	ft_printf("-----------------------\n");
+	ft_println("-----------------------");
 	while (print)
 	{
 		ft_println("text is: %s", print->data);
@@ -56,5 +56,5 @@ void	ft_print_info(t_token *token)
 			ft_println("the next node is: no next node");
 		print = print->next;
 	}
-	ft_printf("-----------------------\n");
+	ft_println("-----------------------");
 }

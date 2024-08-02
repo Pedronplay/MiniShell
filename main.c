@@ -18,9 +18,7 @@ int	ft_see_equal(char *str)
 
 	c = 0;
 	while (str[c] != '=')
-	{
 		c++;
-	}
 	return (c);
 }
 
@@ -31,12 +29,10 @@ void	ft_create_env(char **envp, t_env **env)
 	t_env	*cur;
 	int		s;
 
+	c = 0;
 	i = ft_arraylen(envp);
 	*env = (t_env *)ft_calloc(sizeof(t_env), i);
 	cur = *env;
-
-	ft_println("%d", i);
-	c = 0;
 	while (c < i)
 	{
 		cur = *env + c;

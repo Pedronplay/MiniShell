@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 void	ft_space_skiper(char *str, int *c)
 {
 	while (str[*c] == ' ')

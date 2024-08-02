@@ -107,3 +107,15 @@
 * Continue to the $ expansions;
 
 #
+
+### 📅 **02/08**
+
+* Done Expand on ~ correctly;
+* Done Expand on $ with 0 and 1->9;
+* Done Expand on $ with " and not with ';
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Need get a way to expand inside a str "             $USER               ";
+
+#

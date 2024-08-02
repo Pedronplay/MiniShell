@@ -64,33 +64,27 @@ typedef struct s_token
 	struct s_token		*next;
 }	t_token;
 
-void	hello_print(t_type name);
+//------------tester.c----------------
 void	ft_print_info(t_token *token);
 
+//------------main.c----------------
 void	ft_init_token(t_token *token, char *data);
+
+//------------type_check.c----------------
 void	ft_data_type(t_token *token, bool reset);
 
-char	*ft_input_spliter(char *str);
 
 //------------expand.c----------------
 void	ft_find_expand(t_token **token, t_env *env);
 void	ft_view_data(t_token **token, t_env *env);
 t_env	*ft_get_content(t_env *env, char *title);
 
-//------------???????.c----------------
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_check_triples(char *input);
-int		ft_space_redirect(char *input);
+//------------token_utils.c----------------
 int		ft_clean_size(char *str);
+char	*ft_input_spliter(char *str);
+
+//------------syntax.c----------------
 int		ft_skip_quotes(char *input, int *c, char i);
-void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i);
-void	ft_space_skiper(char *str, int *c);
-
-//------------Meh funcs----------------
-void	ft_reset_int(int *c, int *i);
-void	ft_space_helper(char *str, char **dst, int *c, int *i);
-void	ft_count_helper(char *str, int *c, int *size);
-
 int		ft_syntax_redirects(char *input);
 int		ft_syntax_pipes(char *input);
 
@@ -104,5 +98,18 @@ void	ft_free_env(t_env *env);
 
 //------------syntax2.c -------
 int		ft_validation_input(char *input);
+
+//------------utils.c -------
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_check_triples(char *input);
+int		ft_space_redirect(char *input);
+char	*ft_strcat(char *str1, char *str2);
+
+//------------utils2.c -------
+void	ft_space_skiper(char *str, int *c);
+void	ft_reset_int(int *c, int *i);
+void	ft_count_helper(char *str, int *c, int *size);
+void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i);
+void	ft_space_helper(char *str, char **dst, int *c, int *i);
 
 #endif
