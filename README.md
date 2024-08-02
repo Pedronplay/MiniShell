@@ -113,6 +113,7 @@
 * Done Expand on ~ correctly;
 * Done Expand on $ with 0 and 1->9;
 * Done Expand on $ with " and not with ';
+* Done all of this with no leaks;
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
