@@ -21,8 +21,8 @@
 
 typedef enum e_exit
 {
-	SUCCESS,
 	FAILURE,
+	SUCCESS,
 }	t_exit;
 
 /*

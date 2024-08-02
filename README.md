@@ -118,5 +118,6 @@
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
 * Need get a way to expand inside a str "             $USER               ";
+* Need to norminete expand.c
 
 #

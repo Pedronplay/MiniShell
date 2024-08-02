@@ -14,6 +14,7 @@
 
 static int	ft_see_tilde_ok(char *data);
 static int	ft_see_dollar_ok(char *data);
+int			ft_see_user(char *str);
 
 void	ft_find_expand(t_token **token, t_env *env)
 {
@@ -27,6 +28,7 @@ void	ft_find_expand(t_token **token, t_env *env)
 	}
 }
 
+//TODO do norminette here!
 void	ft_view_data(t_token **token, t_env *env)
 {
 	t_env	*title;
@@ -55,7 +57,7 @@ void	ft_view_data(t_token **token, t_env *env)
 		}
 	}
 	str = ft_strchr(cur->data, '$');
-	if (str && (ft_strcmp(cur->data, "\"$USER\"") == SUCCESS || ft_strcmp(cur->data, "$USER") == SUCCESS) && ft_see_dollar_ok(str) == SUCCESS)
+	if (str && ft_see_user(str)== SUCCESS  && ft_see_dollar_ok(str) == SUCCESS)
 	{
 		title = ft_get_content(env, "USER");
 		free(cur->data);
@@ -100,7 +102,7 @@ t_env	*ft_get_content(t_env *env, char *title)
 static int	ft_see_tilde_ok(char *data)
 {
 	--data;
-	if (ft_isalnum(*data) == SUCCESS)
+	if (ft_isprint(*data))
 		return (FAILURE);
 	while(*data)
 	{
@@ -113,14 +115,28 @@ static int	ft_see_tilde_ok(char *data)
 
 static int	ft_see_dollar_ok(char *data)
 {
-	--data;
-	if (ft_isalnum(*data++) == SUCCESS)
-		return (FAILURE);
 	while(*data)
 	{
 		if (*data == '\'')
 			return (FAILURE);
 		data++;
+	}
+	return (SUCCESS);
+}
+
+int	ft_see_user(char *str)
+{
+	int		c;
+	char	*cmp;
+
+	c = 0;
+	str++;
+	cmp = "USER";
+	while (c < 4)
+	{
+		if (str[c] != cmp[c])
+			return (FAILURE);
+		c++;
 	}
 	return (SUCCESS);
 }
