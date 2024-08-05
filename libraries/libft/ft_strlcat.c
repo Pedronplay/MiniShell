@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogosan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 19:35:45 by diogosan          #+#    #+#             */
-/*   Updated: 2023/09/02 19:35:48 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:32 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,4 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[c] = '\0';
 	return (c2 + i);
 }
-/*
-int  main()
-{
 
-	char	src[5] = "that";
-	char	dest[20] = "this and ";
-  	
-  	
-  	printf("%d", ft_strlcat(dest, src, 5));
-  	//printf("%d", strlcat(dest, src, 5));
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:16:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/01 11:13:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:18 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	free_args(char **numbers);
 int		ft_strchr_bool(const char *str, int c);
 size_t	ft_arraylen(char **str);
 char	*ft_fine_strdup(char const *src, int start, int end);
+
 //t_list	*ft_lstlast(t_list *list);
 //t_list	*ft_lstnew(void *content);
 //int		ft_lstsize(t_list *lst);

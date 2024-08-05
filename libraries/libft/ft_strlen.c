@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:49:48 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 16:27:20 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:01:18 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	int	c;
 
 	c = 0;
+	if (!str)
+		return (0);
 	while (str[c])
 	{
 		c++;

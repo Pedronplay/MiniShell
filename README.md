@@ -121,3 +121,13 @@
 * Need to norminete expand.c
 
 #
+
+### 📅 **03/08**
+
+* ReDone Expand on $USER 
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Continue expand on $
+
+#

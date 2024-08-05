@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/01 16:57:30 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:37:40 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_triples(char *input);
 int		ft_space_redirect(char *input);
 char	*ft_strcat(char *str1, char *str2);
+char	*ft_array_strjoin(char **array);
 
 //------------utils2.c -------
 void	ft_space_skiper(char *str, int *c);

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/17 10:16:03 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:54:44 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,45 @@ char	*ft_strcat(char *str1, char *str2)
 	c = 0;
 	size = ft_strlen(str1) + ft_strlen(str2);
 	str = ft_calloc(size + 1, sizeof(char));
-	while(*str1)
+	if (str1)
 	{
-		str[c] = *str1;
-		c++;
-		str1++;
+		while (*str1)
+			str[c++] = *str1++;
 	}
-	while(*str2)
+	if (str2)
 	{
-		str[c] = *str2;
-		c++;
-		str2++;
+		while (*str2)
+			str[c++] = *str2++;
 	}
 	str[c] = '\0';
 	return (str);
+}
+
+char	*ft_array_strjoin(char **array)
+{
+	int		size;
+	int		c;
+	int		i;
+	char	*str;
+	char	*temp;
+
+
+	size = 0;
+	c = -1;
+	i = -1;
+	while (array[++c] != NULL)
+		size += ft_strlen(array[c]);
+	str = ft_calloc(size + 1, sizeof(char));
+	temp = str;
+	c = -1;
+	while (array[++c] != NULL)
+	{
+		while (array[c][++i] != '\0')
+		{
+			*str++ = array[c][i];
+		}
+		i = -1;
+	}
+	*str = '\0';
+	return (temp);
 }

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:56:43 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 10:46:34 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:38:37 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	ft_syntax_redirects(char *input)
 				if (ft_redirect_type(input + c) != SUCCESS)
 					return (FAILURE);
 				c++;
-				if (input[c] == '|' || ft_space_redirect(input + c))
+				if (input[c] == '|' || ft_space_redirect(input + c) != SUCCESS)
 					return (FAILURE);
 				return (ft_syntax_redirects(input + c));
 			}
