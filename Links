@@ -15,3 +15,17 @@ What the diference bettwin using this write(1,"\n",1) and write(2,"\n",1)
 
 https://chatgpt.com/share/2566f2fa-8f15-48b5-99ef-604c324236b8
 _
+
+
+stuff to get on 42
+
+sudo apt-get install cowsay
+sudo apt-get install fortune
+
+nano ~/.bashrc
+
+if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
+    fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
+fi
+
+https://www.cyberciti.biz/open-source/cbonsai-linux-bonsai-tree-generator-for-cli-lovers-for-fun/
