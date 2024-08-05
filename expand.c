@@ -6,18 +6,14 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/05 19:05:28 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:09:17 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/libft/libft.h"
-
-#include "libraries/printf/ft_printf.h"
 #include "minishell.h"
 
-
 static int	ft_see_tilde_ok(char *data);
-char	*ft_expand_dollar(char *data, t_env *env);
+char		*ft_expand_dollar(char *data, t_env *env);
 static int	ft_see_dollar_ok(char *data);
 int			ft_see_user(char *str);
 
