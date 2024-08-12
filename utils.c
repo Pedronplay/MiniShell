@@ -6,11 +6,10 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/08 15:59:11 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:45:31 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/printf/ft_printf.h"
 #include "minishell.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -93,7 +92,6 @@ char	*ft_array_strjoin(char **array)
 	char	*str;
 	char	*temp;
 
-
 	size = 0;
 	c = -1;
 	i = -1;
@@ -113,6 +111,5 @@ char	*ft_array_strjoin(char **array)
 		i = -1;
 	}
 	str[l] = '\0';
-	ft_println("%s", str);
 	return (temp);
 }

@@ -6,16 +6,14 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 11:35:50 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:45:20 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/libft/libft.h"
-#include "libraries/printf/ft_printf.h"
 #include "minishell.h"
 
 char	*ft_expand_dollar(char *data, t_env *env);
-int		ft_see_expand(char *str, t_env *env);
+int		ft_see_expand(char *str);
 int		ft_see_inst_char(char *str, char c);
 
 void	ft_find_expand(t_token **token, t_env *env)
@@ -84,9 +82,11 @@ void	ft_view_data(t_token **token, t_env *env)
 		{
 			str = NULL;
 			str = ft_expand_dollar(cur->data, env);
-			//free(cur->data);
-			//cur->data = ft_strdup(str);
+			//ft_println("%s", str);
 			//free(str);
+			free(cur->data);
+			cur->data = ft_strdup(str);
+			free(str);
 		}
 	}
 }
@@ -94,7 +94,8 @@ void	ft_view_data(t_token **token, t_env *env)
 char	*ft_expand_dollar(char *data, t_env *env)
 {
 	char	**temp;
-
+	t_env	*title;
+	char	*str;
 	int		c;
 	int		d;
 	int		p;
@@ -103,7 +104,7 @@ char	*ft_expand_dollar(char *data, t_env *env)
 	temp = NULL;
 	c = 0;
 	d = 0;
-	
+	title = ft_get_content(env, "USER");
 	temp = (char **)ft_calloc(ft_see_inst_char(data, '$') + 1, sizeof(char *));
 	while (data[c])
 	{
@@ -131,16 +132,20 @@ char	*ft_expand_dollar(char *data, t_env *env)
 	c = 0;
 	while (temp[c])
 	{
-		ft_see_expand(temp[c++], env);
+		if (ft_see_expand(temp[c]))
+		{
+			free(temp[c]);
+			temp[c] = ft_strdup(title->content);
+		}
+		c++;
 	}
+	str = ft_array_strjoin(temp);
 	char **cur = temp;
 	while (*temp)
-	{
-		ft_println("%s", *temp);
 		free(*temp++);
-	}
 	free(cur);
-	return ("yoo");
+
+	return (str);
 }
 
 int	ft_see_inst_char(char *str, char c)
@@ -176,12 +181,13 @@ t_env	*ft_get_content(t_env *env, char *title)
 	return (env);
 }
 
-int	ft_see_expand(char *str, t_env *env)
+int	ft_see_expand(char *str)
 {
 	int		c;
 	char	*cmp;
-	t_env	*title;
 
+	if (*str == '\"')
+		str++;
 	c = 0;
 	cmp = "$USER";
 	while (c <= 4)
@@ -190,7 +196,5 @@ int	ft_see_expand(char *str, t_env *env)
 			return (FAILURE);
 		c++;
 	}
-	title = ft_get_content(env, "USER");
-	
 	return (SUCCESS);
 }

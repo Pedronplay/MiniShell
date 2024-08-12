@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/08 17:11:05 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:24:25 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	main(int c, char **v, char **envp)
 				free_tokens(token);
 			}
 			free(input);
-			ft_free_env(env);
 		}
+		ft_free_env(env);
 	}
 	return (0);
 }
