@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 12:45:31 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:57:46 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ char	*ft_array_strjoin(char **array)
 	int		size;
 	int		c;
 	int		i;
-	int		l;
 	char	*str;
 	char	*temp;
 
 	size = 0;
 	c = -1;
 	i = -1;
-	l = 0;
 	while (array[++c] != NULL)
 		size += ft_strlen(array[c]) + 1;
 	str = ft_calloc(size + 1, sizeof(char));
@@ -104,12 +102,9 @@ char	*ft_array_strjoin(char **array)
 	while (array[++c] != NULL)
 	{
 		while (array[c][++i] != '\0')
-		{
-			str[l] = array[c][i];
-			l++;
-		}
+			*str++ = array[c][i];
 		i = -1;
 	}
-	str[l] = '\0';
+	*str = '\0';
 	return (temp);
 }

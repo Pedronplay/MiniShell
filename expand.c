@@ -6,10 +6,11 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 12:45:20 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:01:51 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libraries/libft/libft.h"
 #include "minishell.h"
 
 char	*ft_expand_dollar(char *data, t_env *env);
@@ -82,8 +83,6 @@ void	ft_view_data(t_token **token, t_env *env)
 		{
 			str = NULL;
 			str = ft_expand_dollar(cur->data, env);
-			//ft_println("%s", str);
-			//free(str);
 			free(cur->data);
 			cur->data = ft_strdup(str);
 			free(str);
