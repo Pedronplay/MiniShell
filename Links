@@ -25,7 +25,7 @@ sudo apt-get install fortune
 nano ~/.bashrc
 
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
-    fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
+    fortune | cowsay -f $(ls /home/diogosan/sgoinfre/homebrew/Cellar/cowsay/3.04_1/share/cows | shuf -n1)
 fi
 
 https://www.cyberciti.biz/open-source/cbonsai-linux-bonsai-tree-generator-for-cli-lovers-for-fun/

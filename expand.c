@@ -6,16 +6,17 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/05 19:09:17 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:35:50 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libraries/libft/libft.h"
+#include "libraries/printf/ft_printf.h"
 #include "minishell.h"
 
-static int	ft_see_tilde_ok(char *data);
-char		*ft_expand_dollar(char *data, t_env *env);
-static int	ft_see_dollar_ok(char *data);
-int			ft_see_user(char *str);
+char	*ft_expand_dollar(char *data, t_env *env);
+int		ft_see_expand(char *str, t_env *env);
+int		ft_see_inst_char(char *str, char c);
 
 void	ft_find_expand(t_token **token, t_env *env)
 {
@@ -40,7 +41,7 @@ void	ft_view_data(t_token **token, t_env *env)
 	cur = *token;
 	temp = NULL;
 	str = ft_strchr(cur->data, '~');
-	if (str && ft_see_tilde_ok(str) == SUCCESS)
+	if (str)
 	{
 		title = ft_get_content(env, "HOME");
 		if (!*++str)
@@ -56,88 +57,109 @@ void	ft_view_data(t_token **token, t_env *env)
 			free(temp);
 		}
 	}
-	if (ft_strchr(cur->data, '$'))
+	str = ft_strchr(cur->data, '$');
+	if (str)
 	{
-		str = ft_expand_dollar(cur->data, env);
-		free(cur->data);
-		cur->data = ft_strdup(str);
-		free(str);
-	}
-
-
-
-	/*
-	else if (str && (ft_isdigit(str[1]) == SUCCESS || str[1] == '?'))
-	{
-		str++;
-		if (*str == '0')
+		if (!*++str)
+			return ;
+		else if (ft_isdigit(*str) == SUCCESS || *str == '?')
 		{
-			free(cur->data);
-			cur->data = ft_strdup("minishell");
-		}
-		else if (*str > '0' && *str <= '9')
-		{
-			free(cur->data);
-			cur->data = ft_strdup("\n");
+			if (*str == '0')
+			{
+				free(cur->data);
+				cur->data = ft_strdup("minishell");
+			}
+			else if (*str > '0' && *str <= '9')
+			{
+				free(cur->data);
+				cur->data = ft_strdup("\n");
+			}
+			else
+			{
+				free(cur->data);
+				cur->data = ft_strdup("Error code bro!");
+			}
 		}
 		else
 		{
-			free(cur->data);
-			cur->data = ft_strdup("Error code bro!");
+			str = NULL;
+			str = ft_expand_dollar(cur->data, env);
+			//free(cur->data);
+			//cur->data = ft_strdup(str);
+			//free(str);
 		}
-	}*/
+	}
 }
 
 char	*ft_expand_dollar(char *data, t_env *env)
 {
-	char	**temp = NULL;
-	char	**display;
-	char	**changer;
-	char	*str;
-	char	*str_temp;
-	t_env	*title;
+	char	**temp;
+
 	int		c;
-	int		h;
+	int		d;
+	int		p;
 
+	p = 0;
+	temp = NULL;
 	c = 0;
-	title = ft_get_content(env, "USER");
-	str_temp = ft_strchr(data, '$');
-	temp = (char **)ft_calloc(words(data, '$' ) + 1, sizeof(char *));
-	h = str_temp - data;
-	display = temp;
-	changer = temp;
-	while (data)
+	d = 0;
+	
+	temp = (char **)ft_calloc(ft_see_inst_char(data, '$') + 1, sizeof(char *));
+	while (data[c])
 	{
-		*temp = ft_fine_strdup(data, 0, h - 1);
-		c = str_temp - data;
-		if (str_temp)
-			str_temp = ft_strchr(++str_temp, '$');
-		data = data + c;
-		if (!str_temp)
-			h = ft_strlen(data);
-		else
-			h = str_temp - data;
-		temp++;
-	}
-
-	while (*changer != NULL)
-	{
-		if (ft_see_user(*changer) == SUCCESS && ft_see_dollar_ok(*changer) == SUCCESS)
+		if (data[c] == '\"' || data[c] == '\'')
 		{
-			free(*changer);
-			*changer = ft_strdup(title->content);
+			d = c;
+			ft_skip_quotes(data, &c, data[c]);
+			temp[p++] = ft_fine_strdup(data, d, c);
+			c++;
+			if (data[c] == '\0')
+				break ;
 		}
-		changer++;
-	}
-	str = ft_array_strjoin(display);
-	c = -1;
+		else if (data[c] == '$')
+		{
+			d = c;
+			c++;
+			while (data[c] != '$' && data[c] != '\"' && data[c] != '\'' && data[c] != '\0')
+				c++;
+			temp[p++] = ft_fine_strdup(data, d, c - 1);
+		}
+		else
+			c++;
 
-	while (display[++c] != NULL)
-		free(display[c]);
-	free(display);
-	return (str);
+	}
+	c = 0;
+	while (temp[c])
+	{
+		ft_see_expand(temp[c++], env);
+	}
+	char **cur = temp;
+	while (*temp)
+	{
+		ft_println("%s", *temp);
+		free(*temp++);
+	}
+	free(cur);
+	return ("yoo");
 }
 
+int	ft_see_inst_char(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	if (*str != c)
+		i++;
+	while (*str)
+	{
+		if (*str == c)
+			i++;
+		str++;
+	}
+	return (i);
+}
 
 
 t_env	*ft_get_content(t_env *env, char *title)
@@ -154,45 +176,21 @@ t_env	*ft_get_content(t_env *env, char *title)
 	return (env);
 }
 
-
-static int	ft_see_tilde_ok(char *data)
-{
-	--data;
-	if (ft_isprint(*data))
-		return (FAILURE);
-	while (*data)
-	{
-		if (*data == '"')
-			return (FAILURE);
-		data++;
-	}
-	return (SUCCESS);
-}
-
-static int	ft_see_dollar_ok(char *data)
-{
-	while (*data)
-	{
-		if (*data == '\'')
-			return (FAILURE);
-		data++;
-	}
-	return (SUCCESS);
-}
-
-int	ft_see_user(char *str)
+int	ft_see_expand(char *str, t_env *env)
 {
 	int		c;
 	char	*cmp;
+	t_env	*title;
 
 	c = 0;
-	str++;
-	cmp = "USER";
-	while (c < 4)
+	cmp = "$USER";
+	while (c <= 4)
 	{
 		if (str[c] != cmp[c])
 			return (FAILURE);
 		c++;
 	}
+	title = ft_get_content(env, "USER");
+	
 	return (SUCCESS);
 }

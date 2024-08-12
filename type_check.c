@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:15:33 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 14:18:20 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:11:21 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,15 @@ static int	ft_flag_checker(t_token *token)
 		return (FAILURE);
 	if (str[0] == '-' || str[1] == '-')
 	{
-		if (ft_strchr_bool(str, ' ') == FAILURE)
+		if (ft_strchr_bool(str, ' ') == SUCCESS)
 			return (SUCCESS);
 	}
 	return (FAILURE);
 }
 
-void	ft_data_type(t_token *token, bool reset)
+void	ft_data_type(t_token *token)
 {
-	static int	flag_check;
 
-	if (reset)
-		flag_check = 0;
 	if (ft_strcmp(token->data, "<") == SUCCESS)
 		token->type = R_IN;
 	else if (ft_strcmp(token->data, "<<") == SUCCESS)
@@ -64,11 +61,8 @@ void	ft_data_type(t_token *token, bool reset)
 		token->type = EXIT;
 	else if (ft_strcmp(token->data, "|") == SUCCESS)
 		token->type = PIPE;
-	else if ((ft_flag_checker(token) == SUCCESS) && (flag_check != 1))
-	{
+	else if (ft_flag_checker(token) == SUCCESS)
 		token->type = FLAG;
-		flag_check = 1;
-	}
 	else if (ft_check_cmd(token) == SUCCESS)
 		token->type = BUILT_IN;
 	else

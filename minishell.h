@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/05 15:37:40 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:11:32 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_print_info(t_token *token);
 void	ft_init_token(t_token *token, char *data);
 
 //------------type_check.c----------------
-void	ft_data_type(t_token *token, bool reset);
+void	ft_data_type(t_token *token);
 
 
 //------------expand.c----------------

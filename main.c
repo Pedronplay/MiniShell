@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/01 16:58:09 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:11:05 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,13 @@ void	ft_init_token(t_token *token, char *data) // data
 	{
 		cur = token + c;
 		cur->data = ft_strdup(info[c]);
-		ft_data_type(cur, false);
+		ft_data_type(cur);
 		if (info[c + 1])
 			cur->next = cur + 1;
 		else
 			cur->next = NULL;
 		c++;
 	}
-	ft_data_type(cur, true);
 	free_args(info);
 }
 
