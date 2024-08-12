@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 12:24:25 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:53:57 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	main(int c, char **v, char **envp)
 			else
 			{
 				clean_input = ft_input_spliter(input);
-				token = ft_calloc(sizeof(t_token),
-						words_quotes(clean_input, ' '));
+				ft_println("%d", words_quotes(clean_input, ' '));
+				token = ft_calloc(sizeof(t_token) ,words_quotes(clean_input, ' '));
 				free(clean_input);
 				ft_init_token(token, input);
 				ft_find_expand(&token, env);

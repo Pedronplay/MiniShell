@@ -6,15 +6,16 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 14:01:51 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:31:23 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libraries/libft/libft.h"
 #include "minishell.h"
+#include <time.h>
 
 char	*ft_expand_dollar(char *data, t_env *env);
-int		ft_see_expand(char *str);
+char	*ft_see_expand(char *str, t_env *env);
 int		ft_see_inst_char(char *str, char c);
 
 void	ft_find_expand(t_token **token, t_env *env)
@@ -131,10 +132,12 @@ char	*ft_expand_dollar(char *data, t_env *env)
 	c = 0;
 	while (temp[c])
 	{
-		if (ft_see_expand(temp[c]))
+		char *bob = NULL;
+		bob = ft_see_expand(temp[c], env);
+		if (bob)
 		{
 			free(temp[c]);
-			temp[c] = ft_strdup(title->content);
+			temp[c] = ft_strdup(bob);
 		}
 		c++;
 	}
@@ -180,20 +183,20 @@ t_env	*ft_get_content(t_env *env, char *title)
 	return (env);
 }
 
-int	ft_see_expand(char *str)
+char	*ft_see_expand(char *str, t_env *env)
 {
 	int		c;
-	char	*cmp;
 
 	if (*str == '\"')
 		str++;
+	str++;
 	c = 0;
-	cmp = "$USER";
-	while (c <= 4)
+
+	while (env->next)
 	{
-		if (str[c] != cmp[c])
-			return (FAILURE);
-		c++;
+		if (ft_strncmp(str, env->title, ft_strlen(str) - 1) == 0)
+			return (env->content);
+		env = env->next;
 	}
-	return (SUCCESS);
+	return (NULL);
 }
