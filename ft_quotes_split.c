@@ -6,13 +6,13 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:05:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 17:54:43 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:47:27 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_skip(char **str, char i) //TODO grade erro aqui
+void	ft_skip(char **str, char i)
 {
 	(*str)++;
 	while ((**str) || (**str) != '\0')

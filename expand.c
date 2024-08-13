@@ -6,17 +6,17 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 15:31:23 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:47:50 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/libft/libft.h"
 #include "minishell.h"
 #include <time.h>
 
 char	*ft_expand_dollar(char *data, t_env *env);
-char	*ft_see_expand(char *str, t_env *env);
+//char	*ft_see_expand(char *str, t_env *env);
 int		ft_see_inst_char(char *str, char c);
+char	*expand_variables(char *str, t_env *env);
 
 void	ft_find_expand(t_token **token, t_env *env)
 {
@@ -94,17 +94,16 @@ void	ft_view_data(t_token **token, t_env *env)
 char	*ft_expand_dollar(char *data, t_env *env)
 {
 	char	**temp;
-	t_env	*title;
 	char	*str;
 	int		c;
 	int		d;
 	int		p;
+	char *bob = NULL;
 
 	p = 0;
 	temp = NULL;
 	c = 0;
 	d = 0;
-	title = ft_get_content(env, "USER");
 	temp = (char **)ft_calloc(ft_see_inst_char(data, '$') + 1, sizeof(char *));
 	while (data[c])
 	{
@@ -132,12 +131,13 @@ char	*ft_expand_dollar(char *data, t_env *env)
 	c = 0;
 	while (temp[c])
 	{
-		char *bob = NULL;
-		bob = ft_see_expand(temp[c], env);
-		if (bob)
+		//bob = ft_see_expand(temp[c], env);
+		bob = expand_variables(temp[c], env);
+		if (bob && ft_strcmp(bob, temp[c]) != SUCCESS)
 		{
 			free(temp[c]);
 			temp[c] = ft_strdup(bob);
+			free(bob);
 		}
 		c++;
 	}
@@ -180,16 +180,66 @@ t_env	*ft_get_content(t_env *env, char *title)
 			return (cur);
 		cur = cur->next;
 	}
-	return (env);
+	return (NULL);
 }
 
+char	*expand_variables(char *str, t_env *env)
+{
+	char	*result;
+	char	*env_value;
+	int		i;
+	int		j;
+	int		var_start;
+	t_env	*content;
+	char *var_name;
+
+	if (str[0] == '\'')
+		return (ft_strdup(str));
+	result = (char *)ft_calloc(500, sizeof(char));
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '$')
+		{
+			var_start = i + 1;
+			while (str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '"' && str[i + 1] != '$')
+				i++;
+			var_name = ft_fine_strdup(str, var_start, i);
+			content = ft_get_content(env, var_name);
+			if (content)
+			{
+				env_value = content->content;
+				while (*env_value)
+					result[j++] = *env_value++;
+			}
+			free(var_name);
+		}
+		else
+			if (str[i] != '\"')
+				result[j++] = str[i];
+		i++;
+	}
+	result[j] = '\0';
+	return (result);
+}
+
+
+
+
+
+/*
 char	*ft_see_expand(char *str, t_env *env)
 {
 	int		c;
+	char	**temp;
+	char	*joined;
 
 	if (*str == '\"')
 		str++;
+
 	str++;
+
 	c = 0;
 
 	while (env->next)
@@ -200,3 +250,4 @@ char	*ft_see_expand(char *str, t_env *env)
 	}
 	return (NULL);
 }
+*/

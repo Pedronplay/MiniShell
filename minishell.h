@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/08 17:11:32 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:38:11 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		ft_syntax_pipes(char *input);
 //------------ft_quotes_split.c-------
 char	**ft_quotes_split(char *s, char c);
 int		words_quotes(char *s, char c);
+void	ft_skip(char **str, char i);
 
 //------------free_funcs.c -------
 void	free_tokens(t_token *stack);
