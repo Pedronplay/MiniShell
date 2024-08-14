@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/13 14:38:11 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:37:36 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ typedef struct s_token
 	struct s_token		*next;
 }	t_token;
 
+
+typedef struct s_ints
+{
+	int		i;
+	int		j;
+	int		in_single_quote;
+	int		in_double_quote;
+}	t_ints;
 //------------tester.c----------------
 void	ft_print_info(t_token *token);
 
