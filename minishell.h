@@ -72,6 +72,7 @@ typedef struct s_ints
 	int		in_single_quote;
 	int		in_double_quote;
 }	t_ints;
+
 //------------tester.c----------------
 void	ft_print_info(t_token *token);
 
@@ -81,11 +82,8 @@ void	ft_init_token(t_token *token, char *data);
 //------------type_check.c----------------
 void	ft_data_type(t_token *token);
 
-
 //------------expand.c----------------
 void	ft_find_expand(t_token **token, t_env *env);
-void	ft_view_data(t_token **token, t_env *env);
-t_env	*ft_get_content(t_env *env, char *title);
 
 //------------token_utils.c----------------
 int		ft_clean_size(char *str);
@@ -121,5 +119,8 @@ void	ft_reset_int(int *c, int *i);
 void	ft_count_helper(char *str, int *c, int *size);
 void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i);
 void	ft_space_helper(char *str, char **dst, int *c, int *i);
+
+//------------utils3.c -------
+t_env	*ft_get_content(t_env *env, char *title);
 
 #endif

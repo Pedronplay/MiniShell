@@ -93,3 +93,96 @@ str = ft_strchr(cur->data, '~');
 			free(temp);
 		}
 	}
+
+
+// long expand $~
+
+char	*ft_expand_variables(char *str, t_env *env)
+{
+	char	*result;
+	char	*env_value;
+	int		i;
+	int		j;
+	int		var_start;
+	t_env	*content;
+	char	*var_name;
+	int in_single_quote = 0;
+	int in_double_quote = 0;
+
+	result = (char *)ft_calloc(500, sizeof(char));
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_set_quotes_bool(str[i], &in_double_quote, &in_single_quote))
+			;
+		else if (str[i] == '$' && !in_single_quote)
+		{
+			var_start = i + 1;
+			while (str[i + 1] != ' ' && str[i + 1] != '\0'
+				&& str[i + 1] != '"' && str[i + 1] != '\'' && str[i + 1] != '$')
+				i++;
+			var_name = ft_fine_strdup(str, var_start, i);
+			content = ft_get_content(env, var_name);
+			if (content || ft_strcmp(var_name, "?") == SUCCESS)
+			{
+				if (content)
+					env_value = content->content;
+				else
+					env_value = "Error Code";
+				while (*env_value)
+					result[j++] = *env_value++;
+			}
+			free(var_name);
+		}
+		else
+			if (i != 0 && i != (int)ft_strlen(str) - 1)
+				result[j++] = str[i];
+		i++;
+	}
+	result[j] = '\0';
+	return (result);
+}
+
+// long input spliter
+
+char	*ft_input_spliter(char *str)
+{
+	int		size;
+	char	*clean_input;
+	int		c;
+	int		i;
+
+	c = 0;
+	i = 0;
+	size = ft_clean_size(str);
+	clean_input = ft_safe_calloc(size + 1, sizeof(char));
+	ft_space_skiper(str, &c);
+	while (str[c] != '\0')
+	{
+		if (str[c] != ' ')
+		{
+			while (str[c] != ' ' && str[c] != '\0')
+			{
+				if (str[c] == '"' || str[c] == '\'')
+					ft_skip_quotes_w(str, &clean_input, &c, &i);
+				if ((str[c] == '|' || str[c] == '<' || str[c] == '>'))
+					ft_set_space(str, &clean_input, &c, &i);
+				else
+				{
+					if (str[c] != ' ' && str[c] != '\0')
+						clean_input[i] = str[c];
+				}
+				c++;
+				i++;
+			}
+		}
+		else
+		{
+			clean_input[i++] = str[c++];
+			ft_space_skiper(str, &c);
+		}
+	}
+	clean_input[i] = '\0';
+	return (clean_input);
+}

@@ -55,7 +55,7 @@ static void	ft_set_space(char *str, char **dst, int *c, int *i)
 		}
 		else
 		{
-			ft_space_helper(str, dst, c, i); // Puts the spaces ex a<a - > a < a
+			ft_space_helper(str, dst, c, i); // Puts the spaces ex a<a -> a < a
 			return ;
 		}
 	}
@@ -96,7 +96,24 @@ int	ft_clean_size(char *str)
 	return (size);
 }
 
-//TODO too many lines here!
+static void	ft_process_characters(char *str, char *clean_input, int *c, int *i)
+{
+	while (str[*c] != ' ' && str[*c] != '\0')
+	{
+		if (str[*c] == '"' || str[*c] == '\'')
+			ft_skip_quotes_w(str, &clean_input, c, i);
+		else if (str[*c] == '|' || str[*c] == '<' || str[*c] == '>')
+			ft_set_space(str, &clean_input, c, i);
+		else
+		{
+			if (str[*c] != ' ' && str[*c] != '\0')
+				clean_input[*i] = str[*c];
+		}
+		(*c)++;
+		(*i)++;
+	}
+}
+
 char	*ft_input_spliter(char *str)
 {
 	int		size;
@@ -112,22 +129,7 @@ char	*ft_input_spliter(char *str)
 	while (str[c] != '\0')
 	{
 		if (str[c] != ' ')
-		{
-			while (str[c] != ' ' && str[c] != '\0')
-			{
-				if (str[c] == '"' || str[c] == '\'')
-					ft_skip_quotes_w(str, &clean_input, &c, &i);
-				if ((str[c] == '|' || str[c] == '<' || str[c] == '>'))
-					ft_set_space(str, &clean_input, &c, &i);
-				else
-				{
-					if (str[c] != ' ' && str[c] != '\0')
-						clean_input[i] = str[c];
-				}
-				c++;
-				i++;
-			}
-		}
+			ft_process_characters(str, clean_input, &c, &i);
 		else
 		{
 			clean_input[i++] = str[c++];
@@ -137,3 +139,4 @@ char	*ft_input_spliter(char *str)
 	clean_input[i] = '\0';
 	return (clean_input);
 }
+

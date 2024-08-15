@@ -47,8 +47,6 @@ void	ft_create_env(char **envp, t_env **env)
 	}
 }
 
-
-
 //   (void)envp;
 int	main(int c, char **v, char **envp)
 {

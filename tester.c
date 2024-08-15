@@ -19,21 +19,19 @@ static char	*type_to_string(t_type type)
 	else if (type == EXIT)
 		return ("exit");
 	else if (type == FLAG)
-		return ("FLAG");
+		return ("Flag");
 	else if (type == R_IN)
-		return ("R_IN");
+		return ("R_in");
 	else if (type == R_IN2)
-		return ("R_IN2");
-	else if (type == EXIT)
-		return ("EXIT");
+		return ("R_in2");
 	else if (type == R_OUT)
-		return ("R_OUT");
+		return ("R_out");
 	else if (type == R_OUT2)
-		return ("R_OUT2");
+		return ("R_out2");
 	else if (type == PIPE)
-		return ("PIPE");
+		return ("Pipt");
 	else
-		return ("STR");
+		return ("Str");
 }
 
 
