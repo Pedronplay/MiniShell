@@ -146,3 +146,15 @@
 * Start looking up the binary tree;
 
 #
+
+### 📅 **19/08**
+
+* Got the right size of mem to the expands;
+* Done Normineton new code;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Organize the tokens in comands separated by pipes and redirects;
+* Start looking up the binary tree;
+
+#

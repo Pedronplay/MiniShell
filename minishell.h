@@ -84,6 +84,7 @@ void	ft_data_type(t_token *token);
 
 //------------expand.c----------------
 void	ft_find_expand(t_token **token, t_env *env);
+int		ft_set_quotes_bool(char c, int *in_double_quote, int *in_single_quote);
 
 //------------token_utils.c----------------
 int		ft_clean_size(char *str);
@@ -122,5 +123,6 @@ void	ft_space_helper(char *str, char **dst, int *c, int *i);
 
 //------------utils3.c -------
 t_env	*ft_get_content(t_env *env, char *title);
+int		ft_get_full_size(char *str, t_env *env);
 
 #endif
