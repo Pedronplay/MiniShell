@@ -162,6 +162,8 @@
 ### 📅 **20/08**
 
 * Organize the tokens in comands separated by pipes and redirects;
+* Done norminnete to all code;
+* fixed all leaks;
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
