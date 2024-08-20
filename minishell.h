@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/14 18:37:36 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:42:30 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ typedef struct s_token
 	struct s_token		*next;
 }	t_token;
 
+typedef struct s_commands
+{
+	struct s_token		*tokens;
+	struct s_env		*env;
+	struct s_commands	*next;
+}	t_commands;
 
 typedef struct s_ints
 {
@@ -125,4 +131,6 @@ void	ft_space_helper(char *str, char **dst, int *c, int *i);
 t_env	*ft_get_content(t_env *env, char *title);
 int		ft_get_full_size(char *str, t_env *env);
 
+//------------build_commands.c -------
+t_commands	*ft_build_commands(t_token *token, t_env *env);
 #endif

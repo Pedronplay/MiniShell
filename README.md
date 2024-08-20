@@ -158,3 +158,13 @@
 * Start looking up the binary tree;
 
 #
+
+### 📅 **20/08**
+
+* Organize the tokens in comands separated by pipes and redirects;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Start looking up the binary tree;
+
+#

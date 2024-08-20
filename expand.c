@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:56:07 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/14 18:40:20 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:11:11 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ static char	*ft_expand_variables(char *str, t_env *env)
 	result = (char *)ft_calloc(ft_get_full_size(str, env) + 1, sizeof(char));
 	while (str[val.i] != '\0')
 	{
-		if (ft_set_quotes_bool(str[val.i], &val.in_double_quote, &val.in_single_quote))
+		if (ft_set_quotes_bool(str[val.i], &val.in_double_quote,
+				&val.in_single_quote))
 			;
 		else if (str[val.i] == '$' && !val.in_single_quote)
 		{
@@ -117,4 +118,3 @@ static char	*ft_expand_variables(char *str, t_env *env)
 	result[val.j] = '\0';
 	return (result);
 }
-

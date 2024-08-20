@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/13 09:38:41 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:16:14 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ void	ft_create_env(char **envp, t_env **env)
 //   (void)envp;
 int	main(int c, char **v, char **envp)
 {
-	char	*input;
-	char	*clean_input;
-	t_token	*token;
-	t_env	*env;
+	char		*input;
+	char		*clean_input;
+	t_token		*token;
+	t_env		*env;
+	t_commands	*commands;
 
 	(void)c;
 	(void)v;
@@ -83,6 +84,7 @@ int	main(int c, char **v, char **envp)
 				ft_init_token(token, input);
 				ft_find_expand(&token, env);
 				ft_print_info(token);
+				commands = ft_build_commands(token, env);
 				free_tokens(token);
 			}
 			free(input);

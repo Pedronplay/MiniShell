@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:00:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 17:51:38 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:44:13 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static void	ft_set_space(char *str, char **dst, int *c, int *i)
 		}
 		else
 		{
-			ft_space_helper(str, dst, c, i); // Puts the spaces ex a<a -> a < a
+			ft_space_helper(str, dst, c, i);
 			return ;
 		}
 	}
 	else
-		ft_space_helper(str, dst, c, i);// same as above
+		ft_space_helper(str, dst, c, i);
 	return ;
 }
 
@@ -139,4 +139,3 @@ char	*ft_input_spliter(char *str)
 	clean_input[i] = '\0';
 	return (clean_input);
 }
-

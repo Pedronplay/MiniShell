@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 19:35:45 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/05 15:36:32 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:09:47 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[c] = '\0';
 	return (c2 + i);
 }
-
