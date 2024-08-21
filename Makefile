@@ -9,7 +9,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = minishell
 
-SRCS = main.c tester.c syntax.c utils.c utils2.c utils3.c token_utils.c ft_quotes_split.c free_funcs.c type_check.c syntax2.c expand.c build_commands.c
+SRCS = main.c tester.c syntax.c utils.c utils2.c token_utils.c ft_quotes_split.c free_funcs.c type_check.c syntax2.c expand.c \
+	pedro_files/ft_pwd.c pedro_files/ft_echo.c\
+	pedro_files/ft_built_in.c pedro_files/ft_cd.c\
+	pedro_files/ft_env.c pedro_files/ft_built_errors.c
 
 LIBFT = ./libraries/libft/libft.a
 PRINTF = ./libraries/printf/ft_printf.a
@@ -17,8 +20,8 @@ PRINTF = ./libraries/printf/ft_printf.a
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
-RED		= \033[38;5;196m
-RESET 		= \033[0m
+RED			= \033[38;5;196m
+RESET		= \033[0m
 
 #BONUS_SRCS = 
 

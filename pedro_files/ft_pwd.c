@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax2.c                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pebarbos <pebarbos@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 10:21:23 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/31 10:21:40 by diogosan         ###   ########.fr       */
+/*   Created: 2024/08/08 16:08:11 by pebarbos          #+#    #+#             */
+/*   Updated: 2024/08/13 14:05:16 by pebarbos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_validation_input(char *input)
+void	ft_pwd(t_token *token)
 {
-	if (ft_syntax_pipes(input) != SUCCESS)
-		return (FAILURE);
-	if (ft_syntax_redirects(input) != SUCCESS)
-		return (FAILURE);
-	return (SUCCESS);
+	char	cwd[256];
+	
+	if (token->next && token->next->type == 4)
+	{
+		ft_built_err(token, flag_err);
+		return ;
+	}
+	if (token)
+		getcwd(cwd, sizeof(cwd));
+	ft_printf("%s\n", cwd);
 }

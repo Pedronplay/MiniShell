@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:15:33 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/20 14:08:26 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:11:21 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	ft_flag_checker(t_token *token)
 
 void	ft_data_type(t_token *token)
 {
+
 	if (ft_strcmp(token->data, "<") == SUCCESS)
 		token->type = R_IN;
 	else if (ft_strcmp(token->data, "<<") == SUCCESS)

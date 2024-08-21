@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:45:00 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/20 14:08:42 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:04:26 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@ static char	*type_to_string(t_type type)
 	else if (type == EXIT)
 		return ("exit");
 	else if (type == FLAG)
-		return ("Flag");
+		return ("FLAG");
 	else if (type == R_IN)
-		return ("R_in");
+		return ("R_IN");
 	else if (type == R_IN2)
-		return ("R_in2");
+		return ("R_IN2");
+	else if (type == EXIT)
+		return ("EXIT");
 	else if (type == R_OUT)
-		return ("R_out");
+		return ("R_OUT");
 	else if (type == R_OUT2)
-		return ("R_out2");
+		return ("R_OUT2");
 	else if (type == PIPE)
-		return ("Pipt");
+		return ("PIPE");
 	else
-		return ("Str");
+		return ("STR");
 }
+
 
 void	ft_print_info(t_token *token)
 {

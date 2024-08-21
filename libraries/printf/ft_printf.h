@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pebarbos <pebarbos@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/05/13 15:09:13 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:55:56 by pebarbos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int		printf_ft_putnbr_fd_u(unsigned int n, int fd, int c);
 size_t	printf_ft_strlen(const char *str);
 int		printf_ft_putnbr_ptr(unsigned long long ptr, int fd);
 int		ft_println(const char *format, ...);
+int     ft_printf_err(const char *format, ...);
+
 
 #endif

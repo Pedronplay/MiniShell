@@ -6,10 +6,11 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:57:32 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/12 13:57:46 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:59:11 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libraries/printf/ft_printf.h"
 #include "minishell.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -88,12 +89,15 @@ char	*ft_array_strjoin(char **array)
 	int		size;
 	int		c;
 	int		i;
+	int		l;
 	char	*str;
 	char	*temp;
+
 
 	size = 0;
 	c = -1;
 	i = -1;
+	l = 0;
 	while (array[++c] != NULL)
 		size += ft_strlen(array[c]) + 1;
 	str = ft_calloc(size + 1, sizeof(char));
@@ -102,9 +106,13 @@ char	*ft_array_strjoin(char **array)
 	while (array[++c] != NULL)
 	{
 		while (array[c][++i] != '\0')
-			*str++ = array[c][i];
+		{
+			str[l] = array[c][i];
+			l++;
+		}
 		i = -1;
 	}
-	*str = '\0';
+	str[l] = '\0';
+	ft_println("%s", str);
 	return (temp);
 }
