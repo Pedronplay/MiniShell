@@ -6,13 +6,13 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:05:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/07/16 16:46:15 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:47:27 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_skip(char **str, char i)
+void	ft_skip(char **str, char i)
 {
 	(*str)++;
 	while ((**str) || (**str) != '\0')
@@ -35,7 +35,10 @@ int	words_quotes(char *s, char c)
 	while (*s)
 	{
 		if (*s == '\'' || *s == '\"')
+		{
 			ft_skip(&s, *s);
+			count++;
+		}
 		while (*s == c)
 			s++;
 		if (*s)

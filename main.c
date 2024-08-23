@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pebarbos <pebarbos@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/21 19:52:33 by pebarbos         ###   ########.fr       */
+/*   Updated: 2024/08/23 14:43:33 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ void	ft_create_env(char **envp, t_env **env)
 	}
 }
 
-
-
 //   (void)envp;
 int	main(int c, char **v, char **envp)
 {
-	char	*input;
-	char	*clean_input;
-	t_token	*token;
-	t_env	*env;
+	char		*input;
+	char		*clean_input;
+	t_token		*token;
+	t_env		*env;
+	t_commands	*commands;
 
 	(void)c;
 	(void)v;
@@ -86,11 +85,12 @@ int	main(int c, char **v, char **envp)
 				ft_find_expand(&token, env);
 				ft_execute_in(token, env);
 				//ft_print_info(token);
+				commands = ft_build_commands(token, env);
 				free_tokens(token);
 			}
 			free(input);
-			ft_free_env(env);
 		}
+		ft_free_env(env);
 	}
 	return (0);
 }

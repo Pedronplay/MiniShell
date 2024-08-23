@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pebarbos <pebarbos@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:37:41 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/21 15:04:23 by pebarbos         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:42:30 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,21 @@ typedef struct s_token
 	struct s_token		*next;
 }	t_token;
 
+typedef struct s_commands
+{
+	struct s_token		*tokens;
+	struct s_env		*env;
+	struct s_commands	*next;
+}	t_commands;
+
+typedef struct s_ints
+{
+	int		i;
+	int		j;
+	int		in_single_quote;
+	int		in_double_quote;
+}	t_ints;
+
 //------------tester.c----------------
 void	ft_print_info(t_token *token);
 
@@ -87,11 +102,9 @@ void	ft_init_token(t_token *token, char *data);
 //------------type_check.c----------------
 void	ft_data_type(t_token *token);
 
-
 //------------expand.c----------------
 void	ft_find_expand(t_token **token, t_env *env);
-void	ft_view_data(t_token **token, t_env *env);
-t_env	*ft_get_content(t_env *env, char *title);
+int		ft_set_quotes_bool(char c, int *in_double_quote, int *in_single_quote);
 
 //------------token_utils.c----------------
 int		ft_clean_size(char *str);
@@ -105,6 +118,7 @@ int		ft_syntax_pipes(char *input);
 //------------ft_quotes_split.c-------
 char	**ft_quotes_split(char *s, char c);
 int		words_quotes(char *s, char c);
+void	ft_skip(char **str, char i);
 
 //------------free_funcs.c -------
 void	free_tokens(t_token *stack);
@@ -127,10 +141,18 @@ void	ft_count_helper(char *str, int *c, int *size);
 void	ft_skip_quotes_w(char *input, char **dst, int *c, int *i);
 void	ft_space_helper(char *str, char **dst, int *c, int *i);
 
+//------------utils3.c -------
+t_env	*ft_get_content(t_env *env, char *title);
+int		ft_get_full_size(char *str, t_env *env);
+
+//------------build_commands.c -------
+t_commands	*ft_build_commands(t_token *token, t_env *env);
+
+//---------------PEDRO-----------------
+
 //-----------------ft_execute_in.c------
 void	ft_execute_in(t_token *token, t_env *env);
 int		ft_built_in(t_token *token, t_env *env);
-
 
 //-----------------ft_env.c-----------
 void	ft_env(t_env *env, t_token *token);

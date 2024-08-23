@@ -118,16 +118,55 @@
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
 * Need get a way to expand inside a str "             $USER               ";
-* Need to norminete expand.c
+* Need to norminete expand.c;
 
 #
 
 ### 📅 **03/08**
 
-* ReDone Expand on $USER 
+* ReDone Expand on $USER;
 
 ✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
 
-* Continue expand on $
+* Continue expand on $;
+
+#
+
+### 📅 **15/08**
+
+* Finish expand on all variables in and out of strings;
+* Cleaned funcs in expand.c to obey the Norm; 
+* Fixed all leaks and errors;
+* Cleaned ft_input_spliter(char *str) to fit the Norm;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Get the right size of mem to the expands;
+* Organize the tokens in comands separated by pipes and redirects;
+* Start looking up the binary tree;
+
+#
+
+### 📅 **19/08**
+
+* Got the right size of mem to the expands;
+* Done Normineton new code;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Organize the tokens in comands separated by pipes and redirects;
+* Start looking up the binary tree;
+
+#
+
+### 📅 **20/08**
+
+* Organize the tokens in comands separated by pipes and redirects;
+* Done norminnete to all code;
+* fixed all leaks;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Start looking up the binary tree;
 
 #
