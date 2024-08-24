@@ -170,3 +170,15 @@
 * Start looking up the binary tree;
 
 #
+
+### 📅 **23/08**
+
+* Mixed codes;
+* All works well;
+* Norm and leaks ok;
+
+✏️ ${{\color{lightgreen}{\textsf{TODO}}}}\$
+
+* Start looking up the binary tree;
+
+#
