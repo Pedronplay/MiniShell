@@ -11,43 +11,34 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <time.h>
 
 static void	ft_add_token(t_commands *cur, t_token *token);
+static void	ft_get_pipe_nbr(int *n_pipes, t_token *token);
 
 t_commands	*ft_build_commands(t_token *token)
 {
 	t_commands	*commands;
-	t_token		*cur;
-	int			i = -1;
-	int			n_pipes = 0;
+	int			i;
+	int			n_pipes;
 
-	cur = token;
-	while (cur)
-	{
-		if (cur->type == PIPE)
-			n_pipes++;
-		cur = cur->next;
-	}
+	i = -1;
+	ft_get_pipe_nbr(&n_pipes, token);
 	commands = ft_calloc(n_pipes + 1, sizeof(t_commands));
 	while (++i <= n_pipes)
 	{
 		commands[i].tokens = NULL;
 		if (i < n_pipes)
-			commands[i].next = &commands[i + 1];
+			commands[i].next = &commands[i + 1] ;
 		else
 			commands[i].next = NULL;
 	}
+	i = 0;
 	while (token)
 	{
-		if (!cur)
-		{
-			
-		}
 		if (token->type == PIPE)
-			cur = NULL;
+			i++;
 		else
-			ft_add_token(cur, token);
+			ft_add_token(&commands[i], token);
 		token = token->next;
 	}
 	return (commands);
@@ -71,4 +62,18 @@ static void	ft_add_token(t_commands *cmd, t_token *token)
 			cur = cur->next;
 		cur->next = new_token;
 	}
+}
+
+static void	ft_get_pipe_nbr(int *n_pipes, t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token)
+	{
+		if (token->type == PIPE)
+			i++;
+		token = token->next;
+	}
+	*n_pipes = i;
 }

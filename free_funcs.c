@@ -28,6 +28,24 @@ void	free_tokens(t_token *stack)
 	free(stack);
 }
 
+void	free_cmd_tokens(t_token *stack)
+{
+	t_token	*current;
+	t_token	*next;
+
+	if (NULL == stack)
+		return ;
+	current = stack;
+	while (current)
+	{
+		next = current->next;
+		if (current->data)
+			free(current->data);
+		free(current);  
+		current = next;    
+	}
+}
+
 void	ft_free_env(t_env *env)
 {
 	t_env	*current;
@@ -53,8 +71,8 @@ void	ft_free_cmd(t_commands *cmd)
 	cur = cmd;
 	while (cur)
 	{
-		free_tokens(cur->tokens);
-		cur = cur->next;
+		free_cmd_tokens(cur->tokens);
+		cur = cur->next; 
 	}
-	free(cur);
+	free(cmd);
 }

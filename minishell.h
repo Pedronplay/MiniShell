@@ -124,6 +124,7 @@ void	ft_skip(char **str, char i);
 //------------free_funcs.c -------
 void	free_tokens(t_token *stack);
 void	ft_free_env(t_env *env);
+void	ft_free_cmd(t_commands *cmd);
 
 //------------syntax2.c -------
 int		ft_validation_input(char *input);

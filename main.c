@@ -87,6 +87,7 @@ int	main(int c, char **v, char **envp)
 				commands = ft_build_commands(token);
 				ft_print_cmd(commands);
 				free_tokens(token);
+				ft_free_cmd(commands);
 			}
 			free(input);
 		}
