@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:34:55 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/01 16:50:32 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:34:33 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,19 @@ void	ft_free_env(t_env *env)
 		current = current->next;
 	}
 	free(env);
+}
+
+void	ft_free_cmd(t_commands *cmd)
+{
+	t_commands	*cur;
+
+	if (cmd == NULL)
+		return ;
+	cur = cmd;
+	while (cur)
+	{
+		free_tokens(cur->tokens);
+		cur = cur->next;
+	}
+	free(cur);
 }
