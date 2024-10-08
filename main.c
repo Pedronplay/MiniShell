@@ -6,117 +6,83 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:30:03 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/29 16:20:55 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:57:34 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_see_equal(char *str)
+void	client_handler(int sig)
 {
-	int	c;
-
-	c = 0;
-	while (str[c] != '=')
-		c++;
-	return (c);
-}
-
-void	ft_create_env(char **envp, t_env **env)
-{
-	int		c;
-	int		i;
-	t_env	*cur;
-	int		s;
-
-	c = 0;
-	i = ft_arraylen(envp);
-	*env = (t_env *)ft_calloc(sizeof(t_env), i);
-	cur = *env;
-	while (c < i)
+	if (sig == SIGINT)
 	{
-		cur = *env + c;
-		s = ft_see_equal(envp[c]);
-		cur->title = ft_fine_strdup(envp[c], 0, s - 1);
-		cur->content = envp[c] + s + 1;
-		if (envp[c + 1])
-			cur->next = cur + 1;
-		else
-			cur->next = NULL;
-		c++;
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		ft_change_global_err(130);
+		ft_printf("\nMiniHell$> ");
 	}
 }
 
-//   (void)envp;
+void	ft_transform_t_to_s(char **str)
+{
+	char	*temp;
+	int		c;
+
+	temp = *str;
+	c = 0;
+	while (temp[c])
+	{
+		if (temp[c] == '\t')
+			temp[c] = ' ';
+		else if (temp[c] == '\'' || temp[c] == '"')
+			ft_skip_quotes(temp, &c, temp[c]);
+		else if (temp[c])
+			c++;
+	}
+}
+
+void	ft_cicle(int fd_in, int fd_out, t_env **env)
+{
+	char				*input;
+	t_token				*token;
+
+	while (1)
+	{
+		ft_refresh_fds(&fd_in, &fd_out);
+		input = readline("MiniHell$> ");
+		if (input == NULL)
+		{
+			free(input);
+			ft_free_env(*env);
+			ft_println("exit");
+			break ;
+		}
+		else if (*input)
+		{
+			ft_transform_t_to_s(&input);
+			token = ft_parser(input);
+			if (token)
+				ft_execute_in(token, env, 0);
+			set_up_sigaction();
+			unlink("heredoc");
+			free(input);
+		}
+	}
+}
+
 int	main(int c, char **v, char **envp)
 {
-	char		*input;
-	char		*clean_input;
-	t_token		*token;
-	t_env		*env;
-	t_commands	*commands;
+	t_env				*env;
+	int					fd_in;
+	int					fd_out;
 
 	(void)c;
 	(void)v;
-	env = NULL;
-	token = NULL;
-	while (1)
-	{
-		ft_create_env(envp, &env);
-		input = readline("MiniHell$> ");
-		if (input == NULL || ft_strcmp(input, "exit") == SUCCESS)
-		{
-			free(input);
-			ft_free_env(env);
-			break ;
-		}
-		if (*input)
-		{
-			add_history(input);
-			if (ft_validation_input(input) == FAILURE)
-				ft_println("Wrong Syntax");
-			else
-			{
-				clean_input = ft_input_spliter(input);
-				token = ft_calloc(sizeof(t_token), words_quotes(clean_input, ' '));
-				free(clean_input);
-				ft_init_token(token, input);
-				ft_find_expand(&token, env);
-				//ft_execute_in(token, env);
-				//ft_print_info(token);
-				commands = ft_build_commands(token);
-				ft_print_cmd(commands);
-				free_tokens(token);
-				ft_free_cmd(commands);
-			}
-			free(input);
-		}
-		ft_free_env(env);
-	}
+	set_up_sigaction();
+	ft_change_global_err(0);
+	ft_set_fds(&fd_in, &fd_out);
+	ft_create_env(envp, &env);
+	ft_cicle(fd_in, fd_out, &env);
 	return (0);
-}
-
-void	ft_init_token(t_token *token, char *data) // data
-{
-	char	**info;
-	char	*clean_input;
-	int		c;
-	t_token	*cur;
-
-	c = 0;
-	clean_input = ft_input_spliter(data);
-	info = ft_quotes_split(clean_input, ' ');
-	free(clean_input);
-	while (info[c])
-	{
-		cur = token + c;
-		cur->data = ft_strdup(info[c]);
-		ft_data_type(cur);
-		if (info[c + 1])
-			cur->next = cur + 1;
-		else
-			cur->next = NULL;
-		c++;
-	}
-	free_args(info);
 }

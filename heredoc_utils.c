@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 12:12:22 by pebarbos          #+#    #+#             */
-/*   Updated: 2024/09/19 20:17:17 by diogosan         ###   ########.fr       */
+/*   Created: 2024/09/11 16:34:51 by diogosan          #+#    #+#             */
+/*   Updated: 2024/09/11 16:38:58 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	ft_env(t_env *env, t_token *token)
+char	*ft_str_no_quotes(char *str)
 {
-	ft_change_global_err(0);
-	if (!env)
-		return ;
-	if (env->content == NULL)
-		return ;
-	if (token->next != NULL && token->next->type == FLAG)
+	char	*trimed;
+	int		c;
+	int		i;
+	int		max;
+
+	trimed = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	c = 0;
+	i = 0;
+	max = ft_strlen(str);
+	if (*str == '\'' || *str == '\"')
 	{
-		ft_built_err(token, flag_err_env);
-		return ;
+		c++;
+		max--;
 	}
-	while (env)
+	while (c < max)
 	{
-		if (env->content != NULL)
-			ft_printf("%s%s%s\n", env->title, "=", env->content);
-		if (!env->next)
-			return ;
-		env = env->next;
+		trimed[i] = str[c];
+		c++;
+		i++;
 	}
+	return (trimed);
 }

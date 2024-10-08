@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   fds_signals_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 12:12:22 by pebarbos          #+#    #+#             */
-/*   Updated: 2024/09/19 20:17:17 by diogosan         ###   ########.fr       */
+/*   Created: 2024/09/19 17:28:18 by diogosan          #+#    #+#             */
+/*   Updated: 2024/09/19 17:29:02 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	ft_env(t_env *env, t_token *token)
+int	ft_heredoc_sig(int sig)
 {
-	ft_change_global_err(0);
-	if (!env)
-		return ;
-	if (env->content == NULL)
-		return ;
-	if (token->next != NULL && token->next->type == FLAG)
+	static bool		end;	
+
+	if (sig == SIGINT)
 	{
-		ft_built_err(token, flag_err_env);
-		return ;
+		rl_done = 1;
+		end = true;
 	}
-	while (env)
+	if (sig == -2)
 	{
-		if (env->content != NULL)
-			ft_printf("%s%s%s\n", env->title, "=", env->content);
-		if (!env->next)
-			return ;
-		env = env->next;
+		end = false;
+		rl_event_hook = NULL;
+		rl_done = 0;
 	}
+	if (end == true)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+void	ft_refresh_fds(int *in, int *out)
+{
+	dup2(*in, STDIN_FILENO);
+	dup2(*out, STDOUT_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: diogosan <diogosan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:34:55 by diogosan          #+#    #+#             */
-/*   Updated: 2024/08/29 16:34:33 by diogosan         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:37:55 by diogosan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_tokens(t_token *stack)
 		current = current->next;
 	}
 	free(stack);
+	stack = NULL;
 }
 
 void	free_cmd_tokens(t_token *stack)
@@ -41,25 +42,25 @@ void	free_cmd_tokens(t_token *stack)
 		next = current->next;
 		if (current->data)
 			free(current->data);
-		free(current);  
-		current = next;    
+		free(current);
+		current = next;
 	}
 }
 
 void	ft_free_env(t_env *env)
 {
-	t_env	*current;
+	t_env	*tmp;
 
-	if (NULL == env)
-		return ;
-	current = env;
-	while (current)
+	while (env != NULL)
 	{
-		if (current->title)
-			free(current->title);
-		current = current->next;
+		tmp = env;
+		env = env->next;
+		if (tmp->content != NULL)
+			free(tmp->content);
+		if (tmp->title != NULL)
+			free(tmp->title);
+		free(tmp);
 	}
-	free(env);
 }
 
 void	ft_free_cmd(t_commands *cmd)
@@ -72,7 +73,7 @@ void	ft_free_cmd(t_commands *cmd)
 	while (cur)
 	{
 		free_cmd_tokens(cur->tokens);
-		cur = cur->next; 
+		cur = cur->next;
 	}
 	free(cmd);
 }
